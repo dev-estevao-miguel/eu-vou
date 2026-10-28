@@ -1,0 +1,5 @@
+# Commits só de formatação. O GitHub os ignora ao mostrar a autoria de cada linha (blame).
+# No terminal: git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# style: aplica a formatação padrão do Prettier
+44de3130d9340245948753949d56e5f692b1cf35

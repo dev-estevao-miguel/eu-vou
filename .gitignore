@@ -1,0 +1,22 @@
+node_modules
+dist
+dev-dist
+*.local
+.env
+.env.*
+!.env.example
+supabase/.temp
+supabase/.branches
+.vscode/*
+!.vscode/extensions.json
+*.log
+.DS_Store
+Thumbs.db
+
+# Vercel (vínculo local do projeto)
+.vercel
+
+# Relatórios de testes
+coverage
+playwright-report
+test-results

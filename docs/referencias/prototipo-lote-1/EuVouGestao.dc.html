@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-35f42e47-c325-4f7e-8398-56d6ad2d4ad8/styles.css">
+<script src="_ds/nocturne-35f42e47-c325-4f7e-8398-56d6ad2d4ad8/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>:root{--color-bg:#F6F8FC;--color-surface:#FFFFFF;--color-text:#172033;--color-accent:#1E56A0;--color-divider:#DCE3ED;--color-brand:#143A66;--color-red:#C8333D;--color-red-100:#FBECEE;--color-red-700:#9E2530;--color-muted:#566579;--color-field:#7C899B;--color-success:#166534;--color-success-bg:#E6F4EA;--color-warning:#92400E;--color-warning-bg:#FCF1E3;--color-error:#B42318;--color-error-bg:#FDECEA;--color-accent-100:#EEF4FB;--color-accent-200:#D9E6F6;--color-accent-300:#B3CBEB;--color-accent-600:#184A8C;--color-neutral-100:#F6F8FC;--color-neutral-200:#EDF1F7;--color-neutral-300:#DCE3ED;--shadow-sm:0 0 0 1px #DCE3ED;--shadow-md:0 1px 2px rgba(23,32,51,.06),0 6px 20px rgba(23,32,51,.08);--shadow-lg:0 0 0 1px #DCE3ED,0 16px 40px rgba(23,32,51,.16)}body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:Inter,system-ui,sans-serif}a{color:var(--color-accent)}a:hover{color:var(--color-brand)}</style>
+</helmet>
+<div style="display:grid;grid-template-columns:248px minmax(0,1fr);min-height:900px;height:100%;background:var(--color-bg);font-family:Inter,system-ui,sans-serif;color:var(--color-text);font-size:14px;line-height:1.45;position:relative;overflow:hidden">
+<aside aria-label="Navegação da gestão" style="background:var(--color-surface);border-right:1px solid var(--color-divider);display:flex;flex-direction:column;padding:16px 12px;gap:14px;min-height:0;overflow-y:auto">
+<div style="display:flex;align-items:center;gap:10px;padding:0 6px">
+<span style="width:32px;height:32px;border-radius:9px;background:var(--color-brand);display:grid;place-items:center;flex:none"><svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-red)"></circle></svg></span>
+<div><div style="font-size:16px;font-weight:600;color:var(--color-brand);line-height:1.1">Eu Vou</div><div style="font-size:12px;color:var(--color-muted)">Área da direção</div></div>
+</div>
+<div style="padding:10px 12px;border-radius:var(--radius-md);background:var(--color-neutral-100);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:2px">
+<span style="font-size:11px;color:var(--color-muted)">Congregação</span>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ false }}"><button onClick="{{ toastCong }}" style="display:flex;align-items:center;justify-content:space-between;gap:6px;border:0;background:transparent;padding:0;font-family:inherit;font-size:14px;font-weight:500;color:var(--color-text);cursor:pointer;min-height:28px">Vila Demo<i class="ph ph-caret-up-down" style="font-size:16px;color:var(--color-muted)"></i></button></sc-if>
+<sc-if value="{{ notAdmin }}" hint-placeholder-val="{{ true }}"><span style="font-size:14px;font-weight:500;min-height:28px;display:flex;align-items:center">Vila Demo</span></sc-if>
+<span style="font-size:12px;color:var(--color-muted)">Presença que aproxima · Out/2026</span>
+</div>
+<nav style="display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ navMain }}" as="n" hint-placeholder-count="6"><button aria-current="{{ n.cur }}" onClick="{{ n.go }}" style="display:flex;align-items:center;gap:10px;min-height:40px;padding:0 10px;border:0;border-radius:var(--radius-md);background:{{ n.bg }};color:{{ n.fg }};font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;text-align:left" style-hover="background:var(--color-neutral-200)"><i class="{{ n.icon }}" style="font-size:20px"></i><span style="flex:1">{{ n.label }}</span><sc-if value="{{ n.hasBadge }}" hint-placeholder-val="{{ false }}"><span style="min-width:22px;height:20px;padding:0 6px;border-radius:10px;background:var(--color-warning-bg);color:var(--color-warning);font-size:12px;font-weight:600;display:grid;place-items:center">{{ n.badge }}</span></sc-if></button></sc-for>
+</nav>
+<sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ false }}">
+<div style="padding:4px 10px 0;font-size:11px;font-weight:500;color:var(--color-muted);letter-spacing:.06em">ADMINISTRAÇÃO</div>
+<nav style="display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ navAdmin }}" as="n" hint-placeholder-count="8"><button aria-current="{{ n.cur }}" onClick="{{ n.go }}" style="display:flex;align-items:center;gap:10px;min-height:38px;padding:0 10px;border:0;border-radius:var(--radius-md);background:{{ n.bg }};color:{{ n.fg }};font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;text-align:left" style-hover="background:var(--color-neutral-200)"><i class="{{ n.icon }}" style="font-size:20px"></i><span style="flex:1">{{ n.label }}</span></button></sc-for>
+</nav>
+</sc-if>
+<div style="margin-top:auto;padding:12px;border-radius:var(--radius-md);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:10px;align-items:center"><span style="width:36px;height:36px;border-radius:50%;background:var(--color-accent-100);color:var(--color-brand);display:grid;place-items:center;font-size:13px;font-weight:600;flex:none">{{ roleMeta.ini }}</span><div style="min-width:0"><div style="font-size:14px;font-weight:500">{{ roleMeta.who }}</div><div style="font-size:12px;color:var(--color-muted)">{{ roleMeta.label }}</div></div></div>
+<button onClick="{{ toParticipant }}" style="min-height:40px;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-arrows-left-right" style="font-size:16px"></i>Área do participante</button>
+</div>
+</aside>
+<main style="display:flex;flex-direction:column;min-width:0;min-height:0">
+<header style="display:flex;align-items:center;gap:12px 16px;padding:14px 28px;border-bottom:1px solid var(--color-divider);background:var(--color-surface);flex-wrap:wrap">
+<div style="flex:1;min-width:240px"><div style="font-size:20px;font-weight:500;letter-spacing:-.01em">{{ pageTitle }}</div><div style="font-size:13px;color:var(--color-muted);display:flex;gap:6px;align-items:center"><i class="ph ph-map-pin" style="font-size:15px"></i>Congregação Vila Demo · Presença que aproxima · Outubro/2026</div></div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:4px 10px;border-radius:6px;background:var(--color-success-bg);color:var(--color-success)"><i class="ph ph-circle" style="font-size:10px"></i>Ciclo aberto</span>
+<span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:4px 10px;border-radius:6px;background:var(--color-neutral-200);color:var(--color-text)"><i class="ph ph-users-three" style="font-size:14px"></i>Escopo: {{ scopeLabel }}</span>
+<span style="font-size:12px;font-weight:500;padding:4px 10px;border-radius:6px;background:var(--color-warning-bg);color:var(--color-warning)">Dados fictícios</span>
+</div>
+</header>
+
+<sc-if value="{{ page.validacao }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;min-height:0;display:grid;grid-template-columns:minmax(300px,360px) minmax(0,1fr)">
+<section aria-label="Fila de validação" style="border-right:1px solid var(--color-divider);display:flex;flex-direction:column;min-height:0;background:var(--color-surface)">
+<div style="padding:16px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid var(--color-divider)">
+<div role="tablist" style="display:grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:10px;background:var(--color-neutral-200)">
+<sc-for list="{{ tabs }}" as="m" hint-placeholder-count="2"><button role="tab" aria-selected="{{ m.on }}" onClick="{{ m.pick }}" style="min-height:36px;border:0;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;background:{{ m.bg }};color:{{ m.fg }};box-shadow:{{ m.sh }}">{{ m.label }}</button></sc-for>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+<sc-if value="{{ canPickGroup }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ groupChips }}" as="c" hint-placeholder-count="3"><button aria-pressed="{{ c.on }}" onClick="{{ c.pick }}" style="min-height:32px;padding:0 10px;border-radius:16px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font-family:inherit;font-size:13px;font-weight:500;cursor:pointer">{{ c.label }}</button></sc-for></sc-if>
+<sc-if value="{{ lockedGroup }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:0 10px;border-radius:16px;background:var(--color-neutral-200);font-size:13px;font-weight:500"><i class="ph ph-lock-simple" style="font-size:14px"></i>{{ scopeLabel }}</span></sc-if>
+<span style="display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:0 10px;border-radius:16px;border:1px solid var(--color-field);font-size:13px"><i class="ph ph-calendar-blank" style="font-size:14px"></i>Outubro/2026</span>
+<span style="display:inline-flex;align-items:center;gap:5px;min-height:32px;padding:0 10px;border-radius:16px;border:1px solid var(--color-field);font-size:13px"><i class="ph ph-funnel" style="font-size:14px"></i>Todas as atividades</span>
+</div>
+</div>
+<div style="flex:1;overflow-y:auto">
+<sc-for list="{{ list }}" as="it" hint-placeholder-count="4">
+<button onClick="{{ it.pick }}" aria-current="{{ it.cur }}" style="width:100%;display:flex;gap:12px;padding:14px 16px;border:0;border-bottom:1px solid var(--color-divider);background:{{ it.bg }};box-shadow:{{ it.sh }};font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-100)">
+<span style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:600;background:{{ it.avBg }};color:{{ it.avFg }};flex:none">{{ it.ini }}</span>
+<span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px">
+<span style="display:flex;justify-content:space-between;gap:8px"><span style="font-size:15px;font-weight:500">{{ it.name }}</span><span style="font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-brand)">{{ it.ptsLabel }}</span></span>
+<span style="font-size:13px;color:var(--color-muted)">{{ it.act }} · {{ it.short }} · {{ it.group }}</span>
+<span style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;padding:2px 8px;border-radius:6px;background:{{ it.tag.bg }};color:{{ it.tag.fg }}"><i class="{{ it.tag.icon }}" style="font-size:13px"></i>{{ it.tag.label }}</span><span style="font-size:12px;color:var(--color-muted)">enviado {{ it.sent }}</span></span>
+</span>
+</button>
+</sc-for>
+<sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:32px 20px;text-align:center;color:var(--color-muted);display:flex;flex-direction:column;align-items:center;gap:8px"><i class="ph ph-check-square-offset" style="font-size:32px"></i><span style="font-size:15px;font-weight:500;color:var(--color-text)">{{ emptyTitle }}</span><span style="font-size:13px">{{ emptyText }}</span></div></sc-if>
+</div>
+<div style="padding:10px 16px;border-top:1px solid var(--color-divider);font-size:12px;color:var(--color-muted)">Revisão individual. Aprovação em lote fica fora do MVP.</div>
+</section>
+<section aria-label="Análise do registro" style="overflow-y:auto;min-height:0;padding:24px 28px 32px">
+<sc-if value="{{ hasSel }}" hint-placeholder-val="{{ true }}">
+<div style="max-width:880px;display:flex;flex-direction:column;gap:18px">
+<sc-if value="{{ banner.show }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display:flex;gap:12px;padding:14px 16px;border-radius:var(--radius-md);background:{{ banner.bg }};align-items:flex-start"><i class="{{ banner.icon }}" style="font-size:22px;color:{{ banner.fg }}"></i><div style="flex:1"><div style="font-size:15px;font-weight:500;color:{{ banner.fg }}">{{ banner.title }}</div><div style="font-size:14px">{{ banner.text }}</div></div><sc-if value="{{ hasNext }}" hint-placeholder-val="{{ false }}"><button onClick="{{ goNext }}" style="min-height:40px;padding:0 14px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px" style-hover="background:var(--color-neutral-200)">Próximo da fila<i class="ph ph-arrow-right" style="font-size:16px"></i></button></sc-if></div>
+</sc-if>
+<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+<span style="width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:17px;font-weight:600;background:{{ s.avBg }};color:{{ s.avFg }};flex:none">{{ s.ini }}</span>
+<div style="flex:1;min-width:200px"><div style="font-size:22px;font-weight:500;letter-spacing:-.01em">{{ s.full }}</div><div style="font-size:14px;color:var(--color-muted)">{{ s.group }} · Congregação Vila Demo · no ranking: {{ s.name }}</div></div>
+<span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;padding:5px 10px;border-radius:6px;background:{{ s.tag.bg }};color:{{ s.tag.fg }}"><i class="{{ s.tag.icon }}" style="font-size:15px"></i>{{ s.tag.label }}</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<div role="img" aria-label="Foto de comprovação enviada (ilustrativa)" style="aspect-ratio:4/3;border-radius:var(--radius-lg);background:repeating-linear-gradient(135deg, var(--color-neutral-200) 0 10px, var(--color-neutral-100) 10px 20px);border:1px solid var(--color-divider);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--color-muted);font-size:13px"><i class="ph ph-image" style="font-size:36px"></i>Foto de comprovação (ilustrativa)</div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-size:12px;color:var(--color-muted);display:flex;align-items:center;gap:4px"><i class="ph ph-lock-simple" style="font-size:14px"></i>Privada · visível só para quem pode analisar</span><button onClick="{{ openFoto }}" style="min-height:36px;padding:0 12px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px" style-hover="background:var(--color-neutral-200)"><i class="ph ph-magnifying-glass-plus" style="font-size:16px"></i>Ampliar</button></div>
+</div>
+<div style="border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider)">
+<sc-for list="{{ s.rows }}" as="r" hint-placeholder-count="5"><div style="display:flex;gap:12px;padding:11px 14px;border-bottom:1px solid var(--color-divider)"><i class="{{ r.icon }}" style="font-size:18px;color:var(--color-muted);flex:none;margin-top:1px"></i><div style="min-width:0"><div style="font-size:12px;color:var(--color-muted)">{{ r.k }}</div><div style="font-size:14px">{{ r.v }}</div></div></div></sc-for>
+<div style="padding:12px 14px;background:var(--color-accent-100);border-radius:0 0 var(--radius-lg) var(--radius-lg)"><div style="font-size:12px;color:var(--color-muted)">{{ s.impactLabel }}</div><div style="font-size:15px;font-weight:500;color:var(--color-brand)">{{ s.impact }}</div></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:500">Observação do participante</div><div style="padding:12px 14px;border-radius:var(--radius-md);background:var(--color-neutral-200);font-size:14px">{{ s.noteTxt }}</div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font-size:14px;font-weight:500">Histórico do registro</div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ s.hist }}" as="h" hint-placeholder-count="2"><div style="display:flex;gap:10px"><span style="display:flex;flex-direction:column;align-items:center;flex:none"><span style="width:10px;height:10px;border-radius:5px;background:{{ h.dot }};margin-top:5px"></span><span style="width:2px;flex:1;background:var(--color-divider);min-height:14px"></span></span><span style="padding-bottom:10px"><span style="display:block;font-size:14px">{{ h.t }}</span><span style="display:block;font-size:12px;color:var(--color-muted)">{{ h.w }}</span><sc-if value="{{ h.hasQ }}" hint-placeholder-val="{{ false }}"><span style="display:block;font-size:13px;color:var(--color-muted);font-style:italic">{{ h.q }}</span></sc-if></span></div></sc-for>
+</div></div>
+</div>
+<sc-if value="{{ canAct }}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{ modeNone }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:10px;flex-wrap:wrap;padding-top:4px">
+<button onClick="{{ askAprovar }}" style="min-height:44px;padding:0 18px;display:flex;align-items:center;gap:8px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer" style-hover="background:var(--color-accent-600)" style-active="background:var(--color-brand)"><i class="ph ph-check" style="font-size:18px"></i>Aprovar presença</button>
+<button onClick="{{ modeAjuste }}" style="min-height:44px;padding:0 16px;display:flex;align-items:center;gap:8px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-arrow-counter-clockwise" style="font-size:18px"></i>Solicitar ajuste</button>
+<button onClick="{{ modeRecusa }}" style="min-height:44px;padding:0 16px;display:flex;align-items:center;gap:8px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-error);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer" style-hover="background:var(--color-error-bg)"><i class="ph ph-x" style="font-size:18px"></i>Recusar</button>
+</div>
+</sc-if>
+<sc-if value="{{ modeForm }}" hint-placeholder-val="{{ false }}">
+<div style="padding:18px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+<div style="font-size:16px;font-weight:500">{{ form.title }}</div>
+<fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:6px"><legend style="font-size:13px;font-weight:500;padding:0;margin-bottom:6px">Motivo objetivo</legend>
+<sc-for list="{{ form.reasons }}" as="r" hint-placeholder-count="3"><button onClick="{{ r.pick }}" aria-pressed="{{ r.on }}" style="display:flex;align-items:center;gap:10px;min-height:40px;padding:0 12px;border:1px solid {{ r.bd }};border-radius:var(--radius-md);background:{{ r.bg }};font-family:inherit;font-size:14px;color:var(--color-text);cursor:pointer;text-align:left"><i class="{{ r.icon }}" style="font-size:18px;color:var(--color-accent)"></i>{{ r.label }}</button></sc-for>
+</fieldset>
+<div style="display:flex;flex-direction:column;gap:6px"><label for="ev-msg" style="font-size:13px;font-weight:500">Mensagem que o participante verá</label><textarea id="ev-msg" value="{{ form.msg }}" onChange="{{ onMsg }}" style="min-height:76px;padding:10px 12px;font-family:inherit;font-size:15px;border:1px solid {{ form.msgBd }};border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);resize:vertical"></textarea><span style="font-size:12px;color:var(--color-muted)">Use linguagem respeitosa e objetiva. A mensagem fica registrada no histórico.</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button onClick="{{ confirmForm }}" disabled="{{ form.disabled }}" style="min-height:44px;padding:0 16px;border:0;border-radius:var(--radius-md);background:{{ form.btnBg }};color:var(--color-surface);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer">{{ form.cta }}</button><button onClick="{{ cancelForm }}" style="min-height:44px;padding:0 14px;border:0;background:transparent;color:var(--color-text);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;text-decoration:underline;text-underline-offset:3px">Cancelar</button></div>
+</div>
+</sc-if>
+</sc-if>
+</div>
+</sc-if>
+<sc-if value="{{ noSel }}" hint-placeholder-val="{{ false }}"><div style="height:100%;display:grid;place-items:center;color:var(--color-muted);text-align:center"><div><i class="ph ph-tray" style="font-size:40px"></i><div style="font-size:16px;font-weight:500;color:var(--color-text);margin-top:8px">Nada para analisar agora</div><div style="font-size:14px">Novos envios aparecem aqui assim que chegam.</div></div></div></sc-if>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ page.restrito }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;display:grid;place-items:center;padding:40px">
+<div style="max-width:460px;display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+<span style="width:56px;height:56px;border-radius:28px;background:var(--color-neutral-200);display:grid;place-items:center"><i class="ph ph-lock-key" style="font-size:30px"></i></span>
+<div style="font-size:24px;font-weight:500;letter-spacing:-.01em">Acesso restrito</div>
+<div style="font-size:15px;color:var(--color-muted);text-wrap:pretty">{{ restritoText }}</div>
+<div style="font-size:13px;color:var(--color-muted);padding:10px 12px;border-radius:var(--radius-md);background:var(--color-neutral-200)">Nenhum dado do registro foi carregado nesta tela.</div>
+<button onClick="{{ backFromRestrito }}" style="min-height:44px;padding:0 16px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer" style-hover="background:var(--color-neutral-200)">{{ restritoBack }}</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ page.indicadores }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;overflow-y:auto;padding:24px 28px 32px;display:flex;flex-direction:column;gap:20px;max-width:1100px">
+<div style="display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-accent-100);font-size:14px;align-items:flex-start"><i class="ph ph-eye" style="font-size:20px;color:var(--color-accent)"></i><span>Somente consulta. Esta função vê classificações e números agregados; contatos, fotos de comprovação e decisões de aprovação ficam com as direções de grupo e o responsável pela congregação.</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+<sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4"><div style="padding:16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider)"><div style="font-size:13px;color:var(--color-muted)">{{ k.label }}</div><div style="font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.02em">{{ k.value }}</div><div style="font-size:12px;color:var(--color-muted)">{{ k.sub }}</div></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+<sc-for list="{{ pods }}" as="p" hint-placeholder-count="3"><div style="padding:16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between"><span style="font-size:15px;font-weight:500">{{ p.label }}</span><span style="font-size:12px;color:var(--color-muted)">{{ p.count }} participantes</span></div><sc-for list="{{ p.top }}" as="t" hint-placeholder-count="3"><div style="display:flex;align-items:center;gap:10px;min-height:36px"><span style="width:24px;font-weight:600;color:var(--color-brand)">{{ t.pos }}º</span><span style="flex:1">{{ t.name }}</span><span style="font-weight:600;font-variant-numeric:tabular-nums">{{ t.pts }}</span></div></sc-for></div></sc-for>
+</div>
+<div style="border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<div style="padding:14px 16px;font-size:15px;font-weight:500">Participação por grupo · outubro</div>
+<table class="table" style="font-size:14px"><thead><tr><th style="padding:8px 16px">Grupo</th><th style="padding:8px 16px">Participantes</th><th style="padding:8px 16px">Pontos aprovados</th><th style="padding:8px 16px">Em análise</th><th style="padding:8px 16px">Sem registros aprovados</th></tr></thead><tbody><sc-for list="{{ groupRows }}" as="g" hint-placeholder-count="2"><tr><td style="padding:10px 16px">{{ g.name }}</td><td style="padding:10px 16px;font-variant-numeric:tabular-nums">{{ g.n }}</td><td style="padding:10px 16px;font-variant-numeric:tabular-nums">{{ g.pts }}</td><td style="padding:10px 16px;font-variant-numeric:tabular-nums">{{ g.pend }}</td><td style="padding:10px 16px;font-variant-numeric:tabular-nums">{{ g.zero }}</td></tr></sc-for></tbody></table>
+<div style="padding:10px 16px;font-size:12px;color:var(--color-muted)">Números agregados, sem identificação de quem participa menos.</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ page.outro }}" hint-placeholder-val="{{ false }}">
+<div style="flex:1;padding:40px 28px">
+<div style="max-width:560px;padding:24px;border-radius:var(--radius-lg);border:1px dashed var(--color-field);display:flex;flex-direction:column;gap:8px">
+<span style="font-size:12px;font-weight:600;color:var(--color-muted);letter-spacing:.06em">PRÓXIMO LOTE</span>
+<div style="font-size:18px;font-weight:500">{{ outro.title }}</div>
+<div style="font-size:14px;color:var(--color-muted)">{{ outro.text }}</div>
+</div>
+</div>
+</sc-if>
+</main>
+
+<sc-if value="{{ modal.aprovar }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:20;background:color-mix(in srgb, var(--color-text) 40%, transparent);display:grid;place-items:center;padding:20px" onClick="{{ closeModal }}">
+<div role="dialog" aria-modal="true" aria-labelledby="ev-apr-t" onClick="{{ stop }}" style="width:min(440px,100%);background:var(--color-surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:20px;display:flex;flex-direction:column;gap:12px">
+<div id="ev-apr-t" style="font-size:20px;font-weight:500">Aprovar presença?</div>
+<div style="font-size:15px;color:var(--color-muted)">{{ aprovarText }}</div>
+<div style="display:flex;justify-content:flex-end;gap:8px;margin-top:4px"><button onClick="{{ closeModal }}" style="min-height:44px;padding:0 14px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer">Cancelar</button><button onClick="{{ doAprovar }}" style="min-height:44px;padding:0 16px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px" style-hover="background:var(--color-accent-600)"><i class="ph ph-check" style="font-size:18px"></i>Aprovar</button></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ modal.foto }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:20;background:color-mix(in srgb, var(--color-text) 80%, transparent);display:flex;flex-direction:column;padding:24px;gap:12px" onClick="{{ closeModal }}">
+<div style="display:flex;justify-content:space-between;align-items:center;color:var(--color-bg)"><span style="font-size:14px">{{ s.full }} · {{ s.act }} · foto privada</span><button aria-label="Fechar" onClick="{{ closeModal }}" style="width:44px;height:44px;border-radius:22px;border:0;background:color-mix(in srgb, var(--color-bg) 15%, transparent);color:var(--color-bg);display:grid;place-items:center;cursor:pointer"><i class="ph ph-x" style="font-size:22px"></i></button></div>
+<div role="img" aria-label="Foto ampliada (ilustrativa)" style="flex:1;border-radius:var(--radius-lg);background:repeating-linear-gradient(135deg, var(--color-neutral-300) 0 14px, var(--color-neutral-200) 14px 28px);display:grid;place-items:center;color:var(--color-muted);font-size:14px">Foto ampliada (ilustrativa)</div>
+</div>
+</sc-if>
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}"><div role="status" style="position:absolute;right:24px;bottom:24px;z-index:30;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-text);color:var(--color-bg);font-size:14px;display:flex;gap:8px;align-items:center;box-shadow:var(--shadow-md)"><i class="ph ph-info" style="font-size:18px"></i>{{ toastText }}</div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;role&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;adol&quot;,&quot;jov&quot;,&quot;resp&quot;,&quot;campanha&quot;,&quot;admin&quot;],&quot;default&quot;:&quot;adol&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;page&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;validacao&quot;,&quot;indicadores&quot;,&quot;geral&quot;,&quot;participantes&quot;,&quot;desafios&quot;,&quot;rankings&quot;,&quot;acomp&quot;,&quot;fechamento&quot;],&quot;default&quot;:&quot;validacao&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;directLink&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;anaSent&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;boolean&quot;},&quot;decisions&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object&quot;},&quot;onDecide&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;(id, decision, reason) =&gt; void&quot;},&quot;onSwitch&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onClearLink&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+const MEMBERS=[['lucas','Lucas M.','Jovens',285],['ana','Ana Clara M.','Adolescentes',250],['mateus','Mateus A.','Jovens',240],['julia','Júlia S.','Adolescentes',225],['sara','Sara O.','Jovens',220],['davi','Davi L.','Adolescentes',205],['beatriz','Beatriz C.','Jovens',180],['samuel','Samuel R.','Adolescentes',165],['joao','João P.','Jovens',120],['ester','Ester F.','Adolescentes',95],['rebeca','Rebeca T.','Jovens',45],['daniel','Daniel B.','Adolescentes',0]];
+const ITEMS=[
+{id:'ana-dom25',who:'ana',name:'Ana Clara M.',full:'Ana Clara Moura',group:'Adolescentes',act:'Culto oficial',short:'Dom 25/10',date:'Domingo, 25/10/2026 · 18h00 – 20h30 (fictício)',deadline:'26/10, 20h30',sent:'26/10, 18h41',pts:45,note:'',hist:[['Enviado pelo participante','26/10, 18h41']]},
+{id:'davi-dom25',who:'davi',name:'Davi L.',full:'Davi Lima',group:'Adolescentes',act:'Culto oficial',short:'Dom 25/10',date:'Domingo, 25/10/2026 · 18h00 – 20h30 (fictício)',deadline:'26/10, 20h30',sent:'25/10, 20h47',pts:45,note:'',hist:[['Enviado pelo participante','25/10, 20h47']]},
+{id:'julia-sex23',who:'julia',name:'Júlia S.',full:'Júlia Santos',group:'Adolescentes',act:'Oração da mocidade',short:'Sex 23/10',date:'Sexta-feira, 23/10/2026 · 19h30 – 21h00 (fictício)',deadline:'reenvio até 27/10, 23h59',sent:'25/10, 09h15',pts:30,reenvio:true,note:'Troquei a foto, a primeira saiu tremida.',hist:[['Enviado pelo participante','23/10, 21h20'],['Ajuste solicitado · Direção dos Adolescentes','24/10, 10h05','“A imagem ficou tremida e não foi possível identificar a atividade.”'],['Reenviado pelo participante','25/10, 09h15']]},
+{id:'sara-dom25',who:'sara',name:'Sara O.',full:'Sara Oliveira',group:'Jovens',act:'Culto oficial',short:'Dom 25/10',date:'Domingo, 25/10/2026 · 18h00 – 20h30 (fictício)',deadline:'26/10, 20h30',sent:'25/10, 20h58',pts:45,note:'',hist:[['Enviado pelo participante','25/10, 20h58']]},
+{id:'joao-sab24',who:'joao',name:'João P.',full:'João Pereira',group:'Jovens',act:'Ensaio eletrônico',short:'Sáb 24/10',date:'Sábado, 24/10/2026 · 15h00 – 17h00 (fictício)',deadline:'25/10, 17h00',sent:'24/10, 17h10',pts:0,note:'Ensaio com a banda para domingo.',hist:[['Enviado pelo participante','24/10, 17h10']]}];
+const ROLES={admin:{label:'Administrador da plataforma',who:'Estevão Miguel',ini:'EM',scope:['Adolescentes','Jovens'],scopeLabel:'todas as congregações'},resp:{label:'Responsável pela congregação',who:'Conta demonstrativa',ini:'RC',scope:['Adolescentes','Jovens'],scopeLabel:'Vila Demo · dois grupos'},campanha:{label:'Direção da campanha',who:'Conta demonstrativa',ini:'DC',scope:[],scopeLabel:'consulta da campanha'},jov:{label:'Direção dos Jovens',who:'Conta demonstrativa',ini:'DJ',scope:['Jovens'],scopeLabel:'Jovens'},adol:{label:'Direção dos Adolescentes (União)',who:'Conta demonstrativa',ini:'DA',scope:['Adolescentes'],scopeLabel:'Adolescentes'}};
+const ST={analise:['Em análise','ph-hourglass-medium','var(--color-warning)','var(--color-warning-bg)'],reenviado:['Reenviado · em análise','ph-hourglass-medium','var(--color-warning)','var(--color-warning-bg)'],ajuste:['Ajuste solicitado','ph-arrow-counter-clockwise','var(--color-warning)','var(--color-warning-bg)'],aprovado:['Aprovada','ph-check-circle','var(--color-success)','var(--color-success-bg)'],recusado:['Recusada','ph-x-circle','var(--color-error)','var(--color-error-bg)']};
+const tag=s=>{const t=ST[s];return {label:t[0],icon:'ph '+t[1],fg:t[2],bg:t[3]};};
+const AV=[['var(--color-accent-100)','var(--color-brand)'],['var(--color-red-100)','var(--color-red-700)'],['var(--color-neutral-200)','var(--color-text)'],['var(--color-success-bg)','var(--color-success)']];
+const ini=n=>n.replace('.','').split(' ').slice(0,2).map(w=>w[0]).join('');
+const seg=on=>({bg:on?'var(--color-surface)':'transparent',fg:on?'var(--color-text)':'var(--color-muted)',sh:on?'0 1px 2px rgba(23,32,51,.12)':'none'});
+const chip=on=>({bg:on?'var(--color-brand)':'var(--color-surface)',fg:on?'var(--color-surface)':'var(--color-text)',bd:on?'var(--color-brand)':'var(--color-field)'});
+const REASONS={ajuste:['A imagem ficou escura ou tremida','A foto não mostra o contexto da atividade','A data da foto não corresponde à atividade'],recusa:['A foto é de outra atividade','Já existe um registro desta pessoa nesta atividade','Envio fora do prazo, sem exceção autorizada']};
+const DEFMSG={ajuste:'Não foi possível confirmar esta atividade com a imagem enviada. Confira a data e envie uma nova foto.',recusa:'Não foi possível confirmar esta atividade com a imagem enviada. Se tiver dúvidas, fale com a direção do seu grupo.'};
+const PAGES={geral:['Visão geral','G01 · participação do grupo, presenças aprovadas, fila pendente, evolução mensal e atalhos permitidos para a função.'],participantes:['Participantes','G04–G06 · pesquisa, situação do vínculo, detalhe com dados autorizados, novo participante e convite restrito ao grupo.'],desafios:['Desafios','G07 · desafios do próprio grupo: rascunho, publicação, análise e encerramento.'],rankings:['Rankings e histórico','G08 · as três classificações, meses encerrados e versões de resultado.'],acomp:['Acompanhamento','G09 · visão reservada com filtros objetivos, como “Sem registros aprovados no período”, sem rótulos negativos.'],cong:['Congregações','AD02 · lista, cadastro e edição de identidade e contexto.'],contas:['Contas e permissões','AD03 · perfis, funções e confirmação de mudanças sensíveis.'],agenda:['Agenda','AD04 · atividades, recorrência e edição de “esta ocorrência” ou “próximas ocorrências”.'],campanha:['Campanha e regras','AD05 · período, regras, pontuação, desempate e premiações.'],fechamento:['Fechamento mensal','AD07 · checklist de pendências, empates, prévia das três classificações e confirmação final.'],suporte:['Suporte de acesso','AD09 · localizar conta, registrar identidade verificada e gerar link de redefinição.'],textos:['Textos e configurações','AD10 · nome da plataforma, assinatura, contato de suporte e retenção de imagens.'],log:['Histórico de ações','AD11 · quem fez, escopo, data, alteração e justificativa.']};
+
+class Component extends DCLogic {
+  state = {};
+  componentDidUpdate(){ const k=(this.props.role||'')+'|'+(this.props.directLink||''); if(this._lastKey===undefined){ this._lastKey=k; return; } if(k!==this._lastKey){ this._lastKey=k; this.setState({page:undefined,sel:undefined,mode:null,modal:null,tab:undefined,gf:undefined}); } }
+  componentDidMount(){ this._lastKey=(this.props.role||'')+'|'+(this.props.directLink||''); }
+  role(){ return this.props.role ?? this.state.role ?? 'adol'; }
+  dec(){ return this.props.decisions ?? this.state.dec ?? {}; }
+  sent(){ return this.props.anaSent ?? true; }
+  toast(t){ clearTimeout(this.tt); this.setState({toastText:t}); this.tt=setTimeout(()=>this.setState({toastText:null}),2600); }
+  points(dec){ return MEMBERS.map(([id,name,group,base],ix)=>{ let p=base; ITEMS.forEach(it=>{ if(it.who===id&&dec[it.id]==='aprovado') p+=it.pts; }); return {id,name,group,pts:p,ix}; }); }
+  pos(list,id,group){ const l=group?list.filter(m=>m.group===group):list; const me=l.find(m=>m.id===id); return 1+l.filter(m=>m.pts>me.pts).length; }
+  decide(id,d){ const reason=this.state.msg; if(this.props.onDecide) this.props.onDecide(id,d,reason); else this.setState({dec:{...this.dec(),[id]:d}}); this.setState({modal:null,mode:null,reasons:{...(this.state.reasons||{}),[id]:reason},justDecided:id,sel:id}); }
+  renderVals(){
+    const role=this.role(), R=ROLES[role], dec=this.dec();
+    const canSee=id=>{ const it=ITEMS.find(i=>i.id===id); return it&&R.scope.includes(it.group); };
+    const dl=this.props.directLink;
+    const defPage=role==='campanha'?'indicadores':'validacao';
+    let pg=this.state.page ?? (dl&&!canSee(dl)?'restrito':(this.props.page ?? defPage));
+    if(pg==='validacao'&&role==='campanha') pg='restrito';
+    const inScope=ITEMS.filter(i=>R.scope.includes(i.group)&&(i.id!=='ana-dom25'||this.sent()));
+    const gf=this.state.gf ?? 'todos';
+    const scoped=inScope.filter(i=>gf==='todos'||i.group===gf);
+    const pending=scoped.filter(i=>!dec[i.id]), decided=scoped.filter(i=>dec[i.id]);
+    const tab=this.state.tab ?? 'pend';
+    const list=tab==='pend'?pending:decided;
+    const selId=this.state.sel ?? (dl&&canSee(dl)?dl:undefined);
+    const sel=scoped.find(i=>i.id===selId) || list[0];
+    const pts=this.points(dec);
+    const mIx=id=>MEMBERS.findIndex(m=>m[0]===id);
+    const view=it=>{ const st=dec[it.id]||(it.reenvio?'reenviado':'analise'); const a=AV[mIx(it.who)%4]; return {...it,ini:ini(it.name),avBg:a[0],avFg:a[1],tag:tag(st),st,ptsLabel:it.pts>0?it.pts+' pts':'0 pts'}; };
+    const listV=list.map(it=>{ const v=view(it); const on=sel&&sel.id===it.id; return {...v,cur:on?'true':undefined,bg:on?'var(--color-accent-100)':'transparent',sh:on?'inset 3px 0 0 var(--color-accent)':'none',pick:()=>this.setState({sel:it.id,mode:null,justDecided:null})}; });
+    let s=null, banner={show:false}, impact='', impactLabel='';
+    if(sel){
+      s=view(sel); const m=pts.find(x=>x.id===sel.who);
+      const after=this.points({...dec,[sel.id]:'aprovado'});
+      const ma=after.find(x=>x.id===sel.who);
+      if(s.st==='aprovado'){ impactLabel='Saldo aprovado de outubro'; impact=m.pts+' pontos · '+this.pos(pts,sel.who)+'º no Geral · '+this.pos(pts,sel.who,sel.group)+'º em '+sel.group; }
+      else if(sel.pts===0){ impactLabel='Com a aprovação'; impact='Registra a participação · saldo permanece '+m.pts+' pontos'; }
+      else { impactLabel='Com a aprovação'; impact=m.pts+' → '+ma.pts+' pontos · '+this.pos(after,sel.who)+'º no Geral · '+this.pos(after,sel.who,sel.group)+'º em '+sel.group; }
+      const hist=sel.hist.map((h,i)=>({t:h[0],w:h[1],q:h[2]||'',hasQ:!!h[2],dot:i===sel.hist.length-1&&!dec[sel.id]?'var(--color-warning)':'var(--color-field)'}));
+      if(dec[sel.id]){ const rs=(this.state.reasons||{})[sel.id]; hist.push({t:(dec[sel.id]==='aprovado'?'Aprovada':dec[sel.id]==='ajuste'?'Ajuste solicitado':'Recusada')+' · '+R.label,w:'26/10, agora',q:rs?'“'+rs+'”':'',hasQ:!!rs&&dec[sel.id]!=='aprovado',dot:tag(dec[sel.id]).fg}); }
+      s={...s,impact,impactLabel,hist,noteTxt:sel.note||'Sem observação.',
+        rows:[{icon:'ph ph-calendar-check',k:'Atividade',v:sel.act+' · '+sel.group+' e público geral'},{icon:'ph ph-clock',k:'Data e horário',v:sel.date},{icon:'ph ph-paper-plane-tilt',k:'Enviado em',v:sel.sent+' · dentro do prazo ('+sel.deadline+')'},{icon:'ph ph-star',k:'Pontuação que será creditada',v:sel.pts>0?sel.pts+' pontos, uma única vez':'0 · atividade sem pontuação'},{icon:'ph ph-map-pin',k:'Congregação',v:'Vila Demo'}]};
+      if(dec[sel.id]){
+        const d=dec[sel.id];
+        banner={show:true,icon:d==='aprovado'?'ph-fill ph-check-circle':(d==='ajuste'?'ph ph-arrow-counter-clockwise':'ph ph-x-circle'),fg:tag(d).fg,bg:tag(d).bg,
+          title:d==='aprovado'?'Presença aprovada':(d==='ajuste'?'Ajuste solicitado':'Registro recusado'),
+          text:d==='aprovado'?(sel.pts>0?sel.pts+' pontos creditados · '+sel.full+': '+impact+'. Extrato e classificações atualizados.':'Participação registrada para '+sel.full+', sem alteração de saldo.'):(d==='ajuste'?sel.full+' verá o motivo no app e pode reenviar sem duplicar pontos.':sel.full+' verá o motivo no app. Nenhum ponto foi creditado.')};
+      }
+    }
+    const nextItem=pending.find(i=>!sel||i.id!==sel.id);
+    const mode=this.state.mode;
+    const msg=this.state.msg ?? '';
+    const rk=this.state.rk;
+    const form=mode?{title:mode==='ajuste'?'Solicitar ajuste a '+(sel?sel.name:''):'Recusar registro de '+(sel?sel.name:''),cta:mode==='ajuste'?'Enviar solicitação de ajuste':'Confirmar recusa',btnBg:mode==='ajuste'?'var(--color-accent)':'var(--color-error)',msg,disabled:!msg.trim(),msgBd:msg.trim()?'var(--color-field)':'var(--color-error)',
+      reasons:REASONS[mode].map((l,i)=>({label:l,on:rk===i,icon:rk===i?'ph-fill ph-radio-button':'ph ph-circle',bd:rk===i?'var(--color-accent)':'var(--color-divider)',bg:rk===i?'var(--color-accent-100)':'var(--color-surface)',pick:()=>this.setState({rk:i})}))}:{reasons:[]};
+    const pendCount=inScope.filter(i=>!dec[i.id]).length;
+    const mk=(k,l,ic,badge)=>({label:l,icon:(pg===k?'ph-fill ph-':'ph ph-')+ic,cur:pg===k?'page':undefined,bg:pg===k?'var(--color-accent-100)':'transparent',fg:pg===k?'var(--color-brand)':'var(--color-text)',hasBadge:!!badge,badge,go:()=>this.setState({page:k,mode:null})});
+    const navMain=[mk('geral','Visão geral','squares-four')];
+    if(role!=='campanha') navMain.push(mk('validacao','Validação','check-square-offset',pendCount));
+    if(role!=='campanha') navMain.push(mk('participantes','Participantes','users-three'));
+    if(['adol','jov','admin'].includes(role)) navMain.push(mk('desafios','Desafios','flag'));
+    navMain.push(mk('rankings','Rankings e histórico','ranking'));
+    navMain.push(role==='campanha'?mk('indicadores','Indicadores','chart-bar'):mk('acomp','Acompanhamento','hand-heart'));
+    const navAdmin=[['cong','Congregações','buildings'],['contas','Contas e permissões','user-gear'],['agenda','Agenda','calendar-blank'],['campanha','Campanha e regras','book-open-text'],['fechamento','Fechamento mensal','seal-check'],['suporte','Suporte de acesso','key'],['textos','Textos e configurações','gear-six'],['log','Histórico de ações','clock-counter-clockwise']].map(a=>mk(...a));
+    const titles={validacao:'Validação de presenças',restrito:'Acesso restrito',indicadores:'Indicadores da campanha'};
+    const outro=PAGES[pg]?{title:PAGES[pg][0],text:PAGES[pg][1]}:{title:'',text:''};
+    // indicadores
+    const byG=g=>pts.filter(m=>m.group===g);
+    const top=l=>l.slice().sort((a,b)=>b.pts-a.pts).filter(m=>m.pts>0).slice(0,3).map(m=>({...m,pos:1+l.filter(o=>o.pts>m.pts).length}));
+    const pendOf=g=>ITEMS.filter(i=>i.group===g&&!dec[i.id]&&(i.id!=='ana-dom25'||this.sent())).reduce((a,i)=>a+i.pts,0);
+    const total=pts.reduce((a,m)=>a+m.pts,0);
+    const allPend=pendOf('Jovens')+pendOf('Adolescentes');
+    return {
+      isAdmin:role==='admin', notAdmin:role!=='admin', roleMeta:R, scopeLabel:R.scopeLabel, navMain, navAdmin,
+      toastCong:()=>this.toast('Seletor de congregações (AD01): próximo lote.'), toParticipant:()=>{ if(this.props.onSwitch) this.props.onSwitch(); else this.toast('O seletor troca a interface; não concede permissões.'); },
+      page:{validacao:pg==='validacao',restrito:pg==='restrito',indicadores:pg==='indicadores',outro:!!PAGES[pg]}, pageTitle:titles[pg]||outro.title,
+      tabs:[['pend','Em análise ('+pending.length+')'],['dec','Decididos ('+decided.length+')']].map(([k,l])=>({label:l,on:tab===k,...seg(tab===k),pick:()=>this.setState({tab:k,sel:undefined,mode:null})})),
+      canPickGroup:R.scope.length>1, lockedGroup:R.scope.length===1,
+      groupChips:[['todos','Todos os grupos'],['Adolescentes','Adolescentes'],['Jovens','Jovens']].map(([k,l])=>({label:l,on:gf===k,...chip(gf===k),pick:()=>this.setState({gf:k,sel:undefined,mode:null})})),
+      list:listV, listEmpty:listV.length===0, emptyTitle:tab==='pend'?'Nenhum registro em análise':'Nenhuma decisão neste mês', emptyText:tab==='pend'?'Novos envios do seu escopo aparecem aqui.':'As decisões tomadas aparecem aqui.',
+      hasSel:!!s, noSel:!s, s:s||{rows:[],hist:[],tag:{}}, banner, hasNext:!!(banner.show&&nextItem), goNext:()=>nextItem&&this.setState({sel:nextItem.id,mode:null,tab:'pend'}),
+      canAct:!!(s&&!dec[s.id]), modeNone:!mode, modeForm:!!mode, form,
+      askAprovar:()=>this.setState({modal:'aprovar'}), modeAjuste:()=>this.setState({mode:'ajuste',msg:DEFMSG.ajuste,rk:0}), modeRecusa:()=>this.setState({mode:'recusa',msg:DEFMSG.recusa,rk:0}),
+      onMsg:e=>this.setState({msg:e.target.value}), cancelForm:()=>this.setState({mode:null}),
+      confirmForm:()=>{ if(!msg.trim()||!sel) return; this.decide(sel.id,mode==='ajuste'?'ajuste':'recusado'); },
+      aprovarText:sel?(sel.pts>0?sel.pts+' pontos serão creditados a '+sel.full+' no ciclo de outubro, pela data da atividade. Para desfazer depois, será preciso revogar com justificativa.':'A participação de '+sel.full+' será registrada. A atividade não tem pontuação.'):'',
+      doAprovar:()=>sel&&this.decide(sel.id,'aprovado'),
+      modal:{aprovar:this.state.modal==='aprovar',foto:this.state.modal==='foto'}, openFoto:()=>this.setState({modal:'foto'}), closeModal:()=>this.setState({modal:null}), stop:e=>e.stopPropagation(),
+      restritoText:role==='campanha'?'A Direção da campanha acompanha classificações e números agregados. A análise de presenças e as fotos de comprovação não fazem parte desta função.':'Este registro pertence a outro grupo. Sua função ('+R.label+') permite analisar apenas registros de '+R.scopeLabel+' da Congregação Vila Demo.',
+      restritoBack:role==='campanha'?'Ir para Indicadores':'Voltar para a validação', backFromRestrito:()=>{ if(this.props.onClearLink) this.props.onClearLink(); this.setState({page:role==='campanha'?'indicadores':'validacao'}); },
+      outro,
+      kpis:[{label:'Participantes ativos',value:12,sub:'6 Jovens · 6 Adolescentes'},{label:'Pontos aprovados no mês',value:total,sub:'soma das duas classificações'},{label:'Pontos em análise',value:allPend,sub:'não entram na classificação'},{label:'Com presença aprovada',value:'11 de 12',sub:'participantes no mês'}],
+      pods:[{label:'Geral',count:12,top:top(pts)},{label:'Adolescentes',count:6,top:top(byG('Adolescentes'))},{label:'Jovens',count:6,top:top(byG('Jovens'))}],
+      groupRows:['Jovens','Adolescentes'].map(g=>({name:g,n:6,pts:byG(g).reduce((a,m)=>a+m.pts,0),pend:pendOf(g),zero:byG(g).filter(m=>m.pts===0).length})),
+      hasToast:!!this.state.toastText, toastText:this.state.toastText
+    };
+  }
+}
+</script>
+</body>
+</html>

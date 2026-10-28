@@ -1,0 +1,9 @@
+# Mantidos por ferramentas
+package-lock.json
+public/
+
+# Referências de design e briefings: guardados como foram recebidos
+docs/referencias/
+
+# Estado local da CLI do Supabase
+supabase/.temp/

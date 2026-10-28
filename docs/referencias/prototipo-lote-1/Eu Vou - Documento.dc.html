@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/nocturne-35f42e47-c325-4f7e-8398-56d6ad2d4ad8/styles.css">
+<script src="_ds/nocturne-35f42e47-c325-4f7e-8398-56d6ad2d4ad8/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>:root{--color-bg:#F6F8FC;--color-surface:#FFFFFF;--color-text:#172033;--color-accent:#1E56A0;--color-divider:#DCE3ED;--color-brand:#143A66;--color-red:#C8333D;--color-red-100:#FBECEE;--color-red-700:#9E2530;--color-muted:#566579;--color-field:#7C899B;--color-success:#166534;--color-success-bg:#E6F4EA;--color-warning:#92400E;--color-warning-bg:#FCF1E3;--color-error:#B42318;--color-error-bg:#FDECEA;--color-accent-100:#EEF4FB;--color-accent-200:#D9E6F6;--color-accent-300:#B3CBEB;--color-accent-600:#184A8C;--color-neutral-100:#F6F8FC;--color-neutral-200:#EDF1F7;--color-neutral-300:#DCE3ED}body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:Inter,system-ui,sans-serif}a{color:var(--color-accent)}a:hover{color:var(--color-brand)}</style>
+</helmet>
+<div style="width:1280px;padding:56px 64px 80px;display:flex;flex-direction:column;gap:72px;font-size:15px;line-height:1.55">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:44px;border-radius:12px;background:var(--color-brand);display:grid;place-items:center"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-red)"></circle></svg></span><span style="font-size:14px;color:var(--color-muted)">Documento de design · lote 1 · 26/10/2026</span></div>
+<div style="font-size:48px;font-weight:500;letter-spacing:-.03em;line-height:1.05">Eu Vou</div>
+<div style="font-size:20px;color:var(--color-muted);max-width:760px;text-wrap:pretty">Plataforma PWA para incentivar a presença de jovens e adolescentes nas atividades da igreja. Contexto demonstrativo: Congregação Vila Demo, campanha fictícia Presença que aproxima — Outubro/2026.</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+<a href="Eu Vou - Protótipo.dc.html" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:8px;background:var(--color-accent);color:var(--color-surface);text-decoration:none;font-weight:500"><i class="ph ph-play" style="font-size:18px"></i>Abrir protótipo navegável</a>
+<a href="Eu Vou - Telas.dc.html" style="display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:8px;border:1px solid var(--color-field);background:var(--color-surface);color:var(--color-text);text-decoration:none;font-weight:500"><i class="ph ph-squares-four" style="font-size:18px"></i>Telas por módulo</a>
+</div>
+</header>
+
+<section id="s00" style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;align-items:baseline;gap:14px"><span style="font:600 12px ui-monospace,Menlo,monospace;padding:4px 8px;border-radius:4px;background:var(--color-brand);color:var(--color-bg)">00</span><span style="font-size:32px;font-weight:500;letter-spacing:-.02em">Visão e decisões</span></div>
+<div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div style="font-size:18px;font-weight:500">Síntese do produto</div>
+<p style="margin:0;text-wrap:pretty">O Eu Vou organiza a agenda da congregação, recebe o registro de presença com uma foto e encaminha cada envio para a liderança. Quando a presença é aprovada, os pontos da atividade entram no saldo mensal e nas três classificações do ciclo. Os pontos representam atividades registradas e aprovadas; a interface não os associa a valor pessoal nem à fé de ninguém.</p>
+<p style="margin:0;text-wrap:pretty">O nome expressa mobilização. A ação que gera análise se chama sempre <b style="font-weight:600">Registrar presença</b>; nenhuma confirmação de interesse concede pontos.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="font-size:18px;font-weight:500">Ciclo principal</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+<sc-for list="{{ ciclo }}" as="c" hint-placeholder-count="10"><span style="display:inline-flex;align-items:center;gap:6px"><span style="padding:6px 10px;border-radius:8px;background:{{ c.bg }};color:{{ c.fg }};font-size:13px;font-weight:500">{{ c.t }}</span><sc-if value="{{ c.arrow }}" hint-placeholder-val="{{ true }}"><i class="ph ph-arrow-right" style="font-size:14px;color:var(--color-muted)"></i></sc-if></span></sc-for>
+</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<div style="padding:20px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:10px">
+<div style="font-size:16px;font-weight:500">Critérios de sucesso de UX</div>
+<sc-for list="{{ sucesso }}" as="t" hint-placeholder-count="7"><div style="display:flex;gap:8px;font-size:14px"><i class="ph ph-check" style="font-size:16px;color:var(--color-success);flex:none;margin-top:3px"></i><span>{{ t }}</span></div></sc-for>
+</div>
+<div style="padding:20px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:10px;grid-column:span 2">
+<div style="font-size:16px;font-weight:500">Premissas adotadas neste protótipo</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 24px">
+<sc-for list="{{ premissas }}" as="t" hint-placeholder-count="12"><div style="display:flex;gap:8px;font-size:14px"><i class="ph ph-dot-outline" style="font-size:18px;color:var(--color-accent);flex:none;margin-top:1px"></i><span>{{ t }}</span></div></sc-for>
+</div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div style="padding:20px;border-radius:14px;background:var(--color-success-bg);display:flex;flex-direction:column;gap:8px">
+<div style="font-size:16px;font-weight:500;color:var(--color-success);display:flex;align-items:center;gap:8px"><i class="ph ph-check-circle" style="font-size:20px"></i>Desenhado e conectado neste lote</div>
+<sc-for list="{{ feito }}" as="t" hint-placeholder-count="8"><div style="font-size:14px">{{ t }}</div></sc-for>
+</div>
+<div style="padding:20px;border-radius:14px;background:var(--color-neutral-200);display:flex;flex-direction:column;gap:8px">
+<div style="font-size:16px;font-weight:500;display:flex;align-items:center;gap:8px"><i class="ph ph-hourglass-medium" style="font-size:20px"></i>Ainda não desenhado (próximos lotes)</div>
+<sc-for list="{{ falta }}" as="t" hint-placeholder-count="8"><div style="font-size:14px">{{ t }}</div></sc-for>
+</div>
+</div>
+</section>
+
+<section id="s01" style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;align-items:baseline;gap:14px"><span style="font:600 12px ui-monospace,Menlo,monospace;padding:4px 8px;border-radius:4px;background:var(--color-brand);color:var(--color-bg)">01</span><span style="font-size:32px;font-weight:500;letter-spacing:-.02em">Identidade</span></div>
+<div style="font-size:15px;color:var(--color-muted);max-width:820px;text-wrap:pretty">Marca provisória tipográfica. O símbolo é um V de “Vou” que também lê como sinal de confirmação; o ponto vermelho é a pessoa que chega ao encontro. O nome fica parametrizável. A logo definitiva poderá ser criada depois; o brasão da IEADPE não é usado e o Eu Vou não se apresenta como aplicativo oficial.</div>
+<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:16px">
+<div style="padding:28px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:18px;justify-content:space-between">
+<span style="font-size:12px;color:var(--color-muted)">Horizontal</span>
+<div style="display:flex;align-items:center;gap:14px"><span style="width:60px;height:60px;border-radius:16px;background:var(--color-brand);display:grid;place-items:center"><svg width="38" height="38" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-red)"></circle></svg></span><div><div style="font-size:34px;font-weight:600;letter-spacing:-.03em;color:var(--color-brand);line-height:1">Eu Vou</div><div style="font-size:14px;color:var(--color-muted);margin-top:4px">Presença que aproxima</div></div></div>
+</div>
+<div style="padding:28px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:18px;justify-content:space-between">
+<span style="font-size:12px;color:var(--color-muted)">Compacta</span>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:32px;height:32px;border-radius:9px;background:var(--color-brand);display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-red)"></circle></svg></span><span style="font-size:20px;font-weight:600;color:var(--color-brand);letter-spacing:-.02em">Eu Vou</span></div>
+</div>
+<div style="padding:28px;border-radius:14px;background:var(--color-brand);display:flex;flex-direction:column;gap:18px;justify-content:space-between">
+<span style="font-size:12px;color:var(--color-accent-200)">Monocromática sobre a marca</span>
+<div style="display:flex;align-items:center;gap:8px"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-bg)"></circle></svg><span style="font-size:22px;font-weight:600;color:var(--color-bg);letter-spacing:-.02em">Eu Vou</span></div>
+</div>
+<div style="padding:28px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:18px;justify-content:space-between">
+<span style="font-size:12px;color:var(--color-muted)">Monocromática · traço</span>
+<div style="display:flex;align-items:center;gap:8px"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-text);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-text)"></circle></svg><span style="font-size:22px;font-weight:600;color:var(--color-text);letter-spacing:-.02em">Eu Vou</span></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:24px;align-items:stretch">
+<div style="padding:24px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+<span style="font-size:12px;color:var(--color-muted)">Ícone de aplicativo · 512 / 192 / 48</span>
+<div style="display:flex;align-items:flex-end;gap:16px">
+<span style="width:120px;height:120px;border-radius:28px;background:var(--color-brand);display:grid;place-items:center"><svg width="78" height="78" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="2.9" style="fill:var(--color-red)"></circle></svg></span>
+<span style="width:64px;height:64px;border-radius:16px;background:var(--color-brand);display:grid;place-items:center"><svg width="42" height="42" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-red)"></circle></svg></span>
+<span style="width:32px;height:32px;border-radius:8px;background:var(--color-brand);display:grid;place-items:center"><svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:4;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3.2" style="fill:var(--color-red)"></circle></svg></span>
+</div>
+<span style="font-size:12px;color:var(--color-muted)">Área segura de 20% para ícone adaptável (maskable).</span>
+</div>
+<div style="width:180px;height:320px;border-radius:24px;background:var(--color-brand);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--color-bg);position:relative">
+<svg width="56" height="56" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="2.9" style="fill:var(--color-red)"></circle></svg>
+<span style="font-size:20px;font-weight:600">Eu Vou</span>
+<span style="position:absolute;bottom:16px;font-size:10px;color:var(--color-accent-200)">Tela de abertura</span>
+</div>
+<div style="padding:24px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+<div style="font-size:16px;font-weight:500">Avaliação de nomes</div>
+<div style="font-size:13px;color:var(--color-muted)">Leitura de design, sem verificação de disponibilidade ou registro. O trabalho segue com Eu Vou.</div>
+<sc-for list="{{ nomes }}" as="n" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--color-divider)"><span style="font-size:15px;font-weight:600;color:{{ n.fg }}">{{ n.nome }}</span><span style="font-size:14px">{{ n.leitura }}</span></div></sc-for>
+<div style="font-size:13px;color:var(--color-muted);border-top:1px solid var(--color-divider);padding-top:10px">Crédito discreto em Entrada e Sobre: “Design e desenvolvimento por Estevão Miguel”. Em inglês: “Designed &amp; Developed by Estevão Miguel”.</div>
+</div>
+</div>
+</section>
+
+<section id="s02" style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;align-items:baseline;gap:14px"><span style="font:600 12px ui-monospace,Menlo,monospace;padding:4px 8px;border-radius:4px;background:var(--color-brand);color:var(--color-bg)">02</span><span style="font-size:32px;font-weight:500;letter-spacing:-.02em">Sistema de design</span></div>
+<div style="display:flex;gap:12px;padding:16px 18px;border-radius:10px;background:var(--color-warning-bg);max-width:980px"><i class="ph ph-info" style="font-size:22px;color:var(--color-warning);flex:none"></i><div style="font-size:14px"><b style="font-weight:600;color:var(--color-warning)">Base Nocturne, tema claro do briefing.</b> O sistema vinculado é escuro e tem acento violeta; o briefing pede fundo claro, azul como base e evita roxo dominante. Mantive do Nocturne a tipografia Inter com títulos em 500, raios de 8 px, cartões por superfície e borda, foco de 2 px com afastamento e ícones Phosphor, e remapeei os tokens de cor para a paleta proposta. Desvios: ação principal preenchida (uma por tela) para clareza em celulares simples, e alvos de toque de 44 px no lugar da densidade 0,7×. A paleta aguarda conferência com o material oficial da IEADPE.</div></div>
+<div style="font-size:18px;font-weight:500">Cores · tokens</div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+<sc-for list="{{ cores }}" as="c" hint-placeholder-count="11"><div style="border-radius:12px;background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden"><div style="height:64px;background:{{ c.hex }};border-bottom:1px solid var(--color-divider)"></div><div style="padding:10px 12px"><div style="display:flex;justify-content:space-between;gap:8px"><span style="font-size:14px;font-weight:500">{{ c.nome }}</span><span style="font:500 12px ui-monospace,Menlo,monospace;color:var(--color-muted)">{{ c.hex }}</span></div><div style="font-size:12px;color:var(--color-muted)">{{ c.uso }}</div></div></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px">
+<div style="border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<div style="padding:14px 16px;font-size:16px;font-weight:500">Pares de texto e fundo · contraste calculado</div>
+<sc-for list="{{ pares }}" as="p" hint-placeholder-count="10"><div style="display:grid;grid-template-columns:150px minmax(0,1fr) 72px;gap:12px;align-items:center;padding:8px 16px;border-top:1px solid var(--color-divider)"><span style="padding:6px 10px;border-radius:6px;background:{{ p.bg }};color:{{ p.fg }};font-size:14px;font-weight:500;border:1px solid var(--color-divider)">{{ p.amostra }}</span><span style="font-size:13px">{{ p.uso }}</span><span style="font:600 13px ui-monospace,Menlo,monospace;text-align:right">{{ p.ratio }}</span></div></sc-for>
+<div style="padding:10px 16px;font-size:12px;color:var(--color-muted);border-top:1px solid var(--color-divider)">Borda suave (#DCE3ED, 1,3:1) só separa áreas. Campos usam a borda de controle #7C899B (3,5:1) para serem identificáveis sem depender do fundo.</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);padding:16px;display:flex;flex-direction:column;gap:6px">
+<div style="font-size:16px;font-weight:500;margin-bottom:4px">Tipografia · Inter</div>
+<sc-for list="{{ tipos }}" as="t" hint-placeholder-count="8"><div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:baseline;padding:4px 0;border-top:1px solid var(--color-divider)"><span style="font:500 11px ui-monospace,Menlo,monospace;color:var(--color-muted)">{{ t.spec }}</span><span style="font-size:{{ t.size }};font-weight:{{ t.w }};line-height:1.2;letter-spacing:{{ t.ls }};font-variant-numeric:tabular-nums">{{ t.ex }}</span></div></sc-for>
+</div>
+<div style="border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);padding:16px;display:flex;flex-direction:column;gap:10px">
+<div style="font-size:16px;font-weight:500">Medidas</div>
+<div style="display:flex;align-items:flex-end;gap:10px"><sc-for list="{{ espacos }}" as="e" hint-placeholder-count="8"><div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="width:{{ e.px }};height:{{ e.px }};background:var(--color-accent-200);border-radius:3px"></span><span style="font:500 11px ui-monospace,Menlo,monospace;color:var(--color-muted)">{{ e.n }}</span></div></sc-for></div>
+<div style="font-size:13px;color:var(--color-muted)">Escala de 4 e 8. Margens mobile 16–20 px. Alvos de toque de pelo menos 44 × 44 px. Ícones funcionais 20–24 px. Raios: 6 tags · 8 controles · 14 cartões · 20 painéis inferiores.</div>
+</div>
+</div>
+</div>
+<div style="font-size:18px;font-weight:500">Componentes</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+<span style="font-size:13px;font-weight:500;color:var(--color-muted)">Botões · estados</span>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<span style="min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--color-accent);color:var(--color-surface);font-weight:500">Padrão</span>
+<span style="min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--color-accent-600);color:var(--color-surface);font-weight:500">Hover</span>
+<span style="min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--color-brand);color:var(--color-surface);font-weight:500">Pressionado</span>
+<span style="min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--color-accent);color:var(--color-surface);font-weight:500;outline:2px solid var(--color-accent);outline-offset:2px">Foco</span>
+<span style="min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--color-accent);color:var(--color-surface);font-weight:500;opacity:.45">Desabilitado</span>
+<span style="min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;background:var(--color-accent);color:var(--color-surface);font-weight:500;opacity:.7"><span style="width:16px;height:16px;border-radius:50%;border:2px solid color-mix(in srgb, var(--color-surface) 35%, transparent);border-top-color:var(--color-surface)"></span>Carregando</span>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<span style="min-height:44px;padding:0 14px;display:flex;align-items:center;border-radius:8px;border:1px solid var(--color-field);font-weight:500">Secundário</span>
+<span style="min-height:44px;padding:0 10px;display:flex;align-items:center;color:var(--color-accent);font-weight:500;text-decoration:underline;text-underline-offset:3px">Texto</span>
+<span style="min-height:44px;padding:0 14px;display:flex;align-items:center;border-radius:8px;border:1px solid var(--color-field);color:var(--color-error);font-weight:500">Recusar</span>
+</div>
+<span style="font-size:12px;color:var(--color-muted)">Uma ação preenchida por tela. Demais ações em contorno ou texto.</span>
+</div>
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+<span style="font-size:13px;font-weight:500;color:var(--color-muted)">Campos · rótulo persistente</span>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:500">Nome de usuário</span><span style="height:48px;display:flex;align-items:center;padding:0 14px;border:1px solid var(--color-field);border-radius:8px;font-size:16px">anaclara.m</span><span style="font-size:12px;color:var(--color-muted)">Sem espaços. Maiúsculas e minúsculas são iguais.</span></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:500">Senha</span><span style="height:48px;display:flex;align-items:center;padding:0 14px;border:2px solid var(--color-accent);border-radius:8px;font-size:16px;justify-content:space-between">••••••••<i class="ph ph-eye" style="font-size:20px;color:var(--color-muted)"></i></span></div>
+<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:500">WhatsApp com DDD</span><span style="height:48px;display:flex;align-items:center;padding:0 14px;border:1px solid var(--color-error);border-radius:8px;font-size:16px;color:var(--color-muted)">(00) 0000</span><span style="display:flex;gap:6px;align-items:center;font-size:13px;color:var(--color-error)"><i class="ph ph-warning-circle" style="font-size:16px"></i>Informe o número completo com DDD.</span></div>
+</div>
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+<span style="font-size:13px;font-weight:500;color:var(--color-muted)">Seletor de grupo · cadastro</span>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<span style="padding:14px;border-radius:10px;border:2px solid var(--color-accent);background:var(--color-accent-100);display:flex;flex-direction:column;gap:4px"><i class="ph-fill ph-radio-button" style="font-size:20px;color:var(--color-accent)"></i><span style="font-weight:500">Adolescente</span></span>
+<span style="padding:14px;border-radius:10px;border:1px solid var(--color-field);display:flex;flex-direction:column;gap:4px"><i class="ph ph-circle" style="font-size:20px;color:var(--color-field)"></i><span style="font-weight:500">Jovem</span></span>
+</div>
+<span style="font-size:12px;color:var(--color-muted)">Só dois valores. Funções de liderança nunca aparecem no cadastro; são atribuídas pelo administrador.</span>
+<span style="font-size:13px;font-weight:500;color:var(--color-muted);margin-top:4px">Avatar</span>
+<div style="display:flex;gap:10px;align-items:center"><span style="width:56px;height:56px;border-radius:50%;background:var(--color-red-100);color:var(--color-red-700);display:grid;place-items:center;font-weight:600;font-size:18px">AC</span><span style="width:40px;height:40px;border-radius:50%;background:var(--color-accent-100);color:var(--color-brand);display:grid;place-items:center;font-weight:600">LM</span><span style="width:36px;height:36px;border-radius:50%;background:var(--color-neutral-200);display:grid;place-items:center;font-weight:600;font-size:13px">JS</span><span style="width:36px;height:36px;border-radius:50%;background:var(--color-neutral-200);display:grid;place-items:center;color:var(--color-muted)"><i class="ph ph-user" style="font-size:18px"></i></span></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:10px">
+<span style="font-size:13px;font-weight:500;color:var(--color-muted)">Situações · texto + ícone + cor</span>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><sc-for list="{{ status }}" as="s" hint-placeholder-count="12"><span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;padding:4px 10px;border-radius:6px;background:{{ s.bg }};color:{{ s.fg }}"><i class="{{ s.icon }}" style="font-size:15px"></i>{{ s.label }}</span></sc-for></div>
+<span style="font-size:12px;color:var(--color-muted)">Nenhuma situação depende apenas da cor.</span>
+</div>
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:10px">
+<span style="font-size:13px;font-weight:500;color:var(--color-muted)">Alertas</span>
+<div style="display:flex;gap:10px;padding:10px 12px;border-radius:8px;background:var(--color-success-bg);font-size:14px"><i class="ph-fill ph-check-circle" style="font-size:20px;color:var(--color-success)"></i><span><b style="font-weight:500;color:var(--color-success)">Presença aprovada.</b> Você recebeu 45 pontos.</span></div>
+<div style="display:flex;gap:10px;padding:10px 12px;border-radius:8px;background:var(--color-warning-bg);font-size:14px"><i class="ph ph-hourglass-medium" style="font-size:20px;color:var(--color-warning)"></i><span><b style="font-weight:500;color:var(--color-warning)">O mês está em apuração.</b> O resultado sai após as revisões.</span></div>
+<div style="display:flex;gap:10px;padding:10px 12px;border-radius:8px;background:var(--color-error-bg);font-size:14px"><i class="ph ph-warning-circle" style="font-size:20px;color:var(--color-error)"></i><span><b style="font-weight:500;color:var(--color-error)">Não foi possível enviar.</b> A foto continua salva neste dispositivo.</span></div>
+<div style="display:flex;gap:10px;padding:10px 12px;border-radius:8px;background:var(--color-accent-100);font-size:14px"><i class="ph ph-info" style="font-size:20px;color:var(--color-accent)"></i><span>Cada participação conta.</span></div>
+</div>
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:10px">
+<span style="font-size:13px;font-weight:500;color:var(--color-muted)">Pontuação · aprovado separado do pendente</span>
+<div style="padding:16px;border-radius:14px;background:var(--color-brand);color:var(--color-surface);display:flex;flex-direction:column;gap:8px"><span style="font-size:13px;color:var(--color-accent-200)">Sua participação em outubro</span><span style="display:flex;align-items:baseline;gap:8px"><span style="font-size:40px;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums">250</span><span style="font-size:14px;color:var(--color-accent-200)">pontos aprovados</span></span><span style="font-size:13px;padding:8px 10px;border-radius:8px;background:color-mix(in srgb, var(--color-surface) 10%, transparent)">45 pontos em análise · entram após aprovação</span></div>
+<span style="font-size:13px;font-weight:500;color:var(--color-muted);margin-top:4px">Item do ranking · pessoa conectada</span>
+<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;background:var(--color-accent-100)"><span style="width:24px;font-weight:600;color:var(--color-muted)">2º</span><span style="width:32px;height:32px;border-radius:50%;background:var(--color-red-100);color:var(--color-red-700);display:grid;place-items:center;font-size:12px;font-weight:600">AC</span><span style="flex:1;font-weight:500">Ana Clara M. <span style="font-size:11px;font-weight:600;color:var(--color-surface);background:var(--color-accent);padding:1px 6px;border-radius:4px;margin-left:4px">VOCÊ</span></span><span style="font-weight:600;font-variant-numeric:tabular-nums">250</span></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px">
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:10px">
+<span style="font-size:13px;font-weight:500;color:var(--color-muted)">Inventário de componentes e onde estão aplicados</span>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 20px"><sc-for list="{{ inventario }}" as="i" hint-placeholder-count="18"><div style="display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:5px 0;border-bottom:1px solid var(--color-divider)"><span>{{ i.n }}</span><span style="color:var(--color-muted);font:500 11px ui-monospace,Menlo,monospace">{{ i.w }}</span></div></sc-for></div>
+</div>
+<div style="padding:18px;border-radius:14px;background:#161826;color:#e9e9ed;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:13px;font-weight:500;color:#b2b6ca">Amostra · tema escuro (evolução)</span>
+<div style="padding:14px;border-radius:12px;background:#232532;display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;color:#b2b6ca">Sua participação em outubro</span><span style="font-size:34px;font-weight:600;line-height:1">250</span><span style="font-size:12px;color:#f5c28a">45 em análise</span></div>
+<span style="min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid #7ea6dc;color:#a9c6ee;font-weight:500">Registrar presença</span>
+<span style="font-size:12px;color:#b2b6ca">Fundo e superfícies do Nocturne com o azul da marca clareado. Não detalhado antes de concluir o tema claro.</span>
+</div>
+</div>
+</section>
+
+<section id="s03" style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;align-items:baseline;gap:14px"><span style="font:600 12px ui-monospace,Menlo,monospace;padding:4px 8px;border-radius:4px;background:var(--color-brand);color:var(--color-bg)">IA</span><span style="font-size:32px;font-weight:500;letter-spacing:-.02em">Arquitetura e permissões</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px">
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:8px">
+<div style="font-size:16px;font-weight:500">Estrutura</div>
+<sc-for list="{{ estrutura }}" as="e" hint-placeholder-count="5"><div style="display:flex;align-items:center;gap:8px;padding-left:{{ e.pad }};font-size:14px"><i class="{{ e.icon }}" style="font-size:18px;color:var(--color-accent)"></i>{{ e.t }}</div></sc-for>
+<div style="font-size:12px;color:var(--color-muted);margin-top:4px">Dados nunca se misturam entre igrejas ou congregações. O contexto aparece em cabeçalhos, filtros e confirmações.</div>
+</div>
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:8px">
+<div style="font-size:16px;font-weight:500">Participante · 5 destinos</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:8px;border-radius:10px;border:1px solid var(--color-divider)"><sc-for list="{{ navP }}" as="n" hint-placeholder-count="5"><span style="display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;color:var(--color-muted)"><i class="{{ n.i }}" style="font-size:22px;color:var(--color-text)"></i>{{ n.l }}</span></sc-for></div>
+<div style="font-size:13px">Desafios aparecem no Início e em atalhos. Notificações ficam no topo. Sem sexta aba.</div>
+</div>
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:8px">
+<div style="font-size:16px;font-weight:500">Gestão · por função</div>
+<div style="font-size:13px">Desktop com barra lateral; no celular, menu compacto com os destinos essenciais e Mais. O seletor “Área da direção / Área do participante” troca a interface e não concede permissões. Itens sem permissão ficam ocultos; acesso direto mostra Acesso restrito.</div>
+<div style="font-size:13px;color:var(--color-muted)">A Direção da campanha não recebe aba de validação.</div>
+</div>
+</div>
+<div style="border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<div style="padding:14px 18px;font-size:16px;font-weight:500">Matriz de permissões</div>
+<table style="width:100%;border-collapse:collapse;font-size:13px">
+<thead><tr style="background:var(--color-neutral-200)"><sc-for list="{{ matrizHead }}" as="h" hint-placeholder-count="7"><th style="text-align:left;padding:10px 12px;font-weight:500;font-size:12px;color:var(--color-muted)">{{ h }}</th></sc-for></tr></thead>
+<tbody><sc-for list="{{ matriz }}" as="r" hint-placeholder-count="12"><tr style="border-top:1px solid var(--color-divider)"><td style="padding:9px 12px;font-weight:500;width:26%">{{ r.acao }}</td><sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="6"><td style="padding:9px 12px"><span style="display:inline-flex;align-items:center;gap:5px;color:{{ c.fg }}"><i class="{{ c.icon }}" style="font-size:15px"></i>{{ c.t }}</span></td></sc-for></tr></sc-for></tbody>
+</table>
+<div style="padding:12px 18px;font-size:13px;color:var(--color-muted);border-top:1px solid var(--color-divider)">Ver ranking não dá acesso a telefone, nascimento, fotos de comprovação ou relatórios de baixa participação. Gestão do próprio grupo não inclui promover a líder, mudar congregação ou transferir de grupo. O envio de uma pessoa da liderança é revisado por outro aprovador; se o administrador for o único disponível, a exceção exige justificativa no histórico. A implementação deve verificar todas as permissões também fora da interface.</div>
+</div>
+</section>
+
+<section id="s10" style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;align-items:baseline;gap:14px"><span style="font:600 12px ui-monospace,Menlo,monospace;padding:4px 8px;border-radius:4px;background:var(--color-brand);color:var(--color-bg)">D</span><span style="font-size:32px;font-weight:500;letter-spacing:-.02em">Decisões propostas e pendências</span></div>
+<div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px">
+<div style="border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<div style="padding:14px 18px;font-size:16px;font-weight:500">Registro de decisões · todas como proposta</div>
+<sc-for list="{{ decisoes }}" as="d" hint-placeholder-count="12"><div style="display:grid;grid-template-columns:48px minmax(0,1fr) 92px;gap:12px;padding:10px 18px;border-top:1px solid var(--color-divider);font-size:14px;align-items:baseline"><span style="font:600 12px ui-monospace,Menlo,monospace;color:var(--color-muted)">{{ d.id }}</span><span>{{ d.t }}</span><span style="font-size:12px;font-weight:500;color:var(--color-warning);text-align:right">Confirmar</span></div></sc-for>
+</div>
+<div style="padding:18px;border-radius:14px;background:var(--color-warning-bg);display:flex;flex-direction:column;gap:8px">
+<div style="font-size:16px;font-weight:500;color:var(--color-warning)">O idealizador precisa confirmar</div>
+<sc-for list="{{ pendencias }}" as="t" hint-placeholder-count="12"><div style="display:flex;gap:8px;font-size:14px"><i class="ph ph-square" style="font-size:16px;color:var(--color-warning);flex:none;margin-top:3px"></i><span>{{ t }}</span></div></sc-for>
+<div style="font-size:13px;margin-top:6px">A ausência dessas confirmações não impede o protótipo com os padrões propostos; só impede tratá-los como decisões finais.</div>
+</div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals(){
+    const ciclo=['Cadastro','Acesso individual','Agenda','Participação','Envio de foto','Análise da liderança','Presença aprovada','Crédito de pontos','Ranking do mês','Premiação'];
+    const Y='Sim', N='Não';
+    const M=[
+      ['Ver as três classificações e histórico','Todas','Própria congregação','Própria campanha','Própria campanha','Própria campanha','Própria campanha'],
+      ['Ver contatos e cadastro completo de terceiros','Todos','Própria congregação',N,'Próprio grupo','Próprio grupo',N],
+      ['Ver comprovantes privados','Todos','Própria congregação',N,'Próprio grupo','Próprio grupo','Apenas os próprios'],
+      ['Aprovar ou recusar registros','Todos','Própria congregação',N,'Próprio grupo','Próprio grupo',N],
+      ['Cadastrar e editar outros participantes','Todos','Não por padrão',N,'Próprio grupo','Próprio grupo',N],
+      ['Gerar convite de autocadastro','Todos','Não por padrão',N,'Próprio grupo','Próprio grupo',N],
+      ['Criar e administrar desafios','Todos','Não por padrão',N,'Apenas Jovens','Apenas Adolescentes',N],
+      ['Configurar agenda comum e pontos das atividades',Y,N,N,N,N,N],
+      ['Alterar permissões e congregações',Y,N,N,N,N,N],
+      ['Encerrar ou reabrir ciclo mensal',Y,N,N,N,N,N],
+      ['Gerar redefinição de senha',Y,N,N,N,N,N],
+      ['Alterar o próprio perfil permitido',Y,Y,Y,Y,Y,Y]];
+    const cell=t=>t==='Não'?{t,icon:'ph ph-minus',fg:'var(--color-muted)'}:(t==='Não por padrão'?{t,icon:'ph ph-minus',fg:'var(--color-muted)'}:{t,icon:'ph ph-check',fg:'var(--color-success)'});
+    const st=[['Rascunho neste dispositivo','ph-device-mobile','var(--color-accent)','var(--color-accent-100)'],['Enviando','ph-upload-simple','var(--color-accent)','var(--color-accent-100)'],['Em análise','ph-hourglass-medium','var(--color-warning)','var(--color-warning-bg)'],['Ajuste solicitado','ph-arrow-counter-clockwise','var(--color-warning)','var(--color-warning-bg)'],['Reenviado · em análise','ph-hourglass-medium','var(--color-warning)','var(--color-warning-bg)'],['Aprovada','ph-check-circle','var(--color-success)','var(--color-success-bg)'],['Recusada','ph-x-circle','var(--color-error)','var(--color-error-bg)'],['Cancelado pelo participante','ph-prohibit','var(--color-muted)','var(--color-neutral-200)'],['Aprovação revogada','ph-arrow-u-up-left','var(--color-error)','var(--color-error-bg)'],['Envio fora do prazo','ph-clock-countdown','var(--color-warning)','var(--color-warning-bg)'],['Prevista','ph-clock','var(--color-muted)','var(--color-neutral-200)'],['Disponível para registro','ph-camera','var(--color-accent)','var(--color-accent-100)'],['Encerrada','ph-lock-simple','var(--color-muted)','var(--color-neutral-200)'],['Cancelada','ph-prohibit','var(--color-error)','var(--color-error-bg)']];
+    return {
+      ciclo:ciclo.map((t,i)=>({t,arrow:i<ciclo.length-1,bg:i===6?'var(--color-success-bg)':(i===5?'var(--color-warning-bg)':'var(--color-surface)'),fg:i===6?'var(--color-success)':(i===5?'var(--color-warning)':'var(--color-text)')})),
+      sucesso:['O participante entende rapidamente qual atividade pode registrar.','O envio tem poucos passos e funciona em celulares simples.','Pontos aprovados, em análise e registros recusados ficam distintos.','A liderança avalia uma presença com contexto suficiente.','As três classificações mensais são transparentes e coerentes.','Quem participa menos é acompanhado de forma reservada.','Permissões claras; congregação e grupo sempre visíveis.'],
+      premissas:['Uma campanha ativa por congregação.','Cada participante pertence a uma congregação e a um grupo por ciclo; troca de grupo vale no próximo ciclo.','Ranking geral = todos os participantes da campanha naquela congregação.','Envio liberado a partir do término da atividade, até 24 h depois.','Fora do prazo, só com exceção administrativa justificada.','O mês do registro é o da atividade, não o da aprovação. Fuso America/Recife.','Apuração até o 3º dia do mês seguinte, 23h59; encerramento manual pelo administrador.','Reenvio após ajuste: prazo informado pela direção (exemplo: até 27/10, 23h59).','Uma foto por envio; JPG, PNG ou HEIC até 10 MB, reduzida antes do envio.','Novos cadastros aguardam aprovação do vínculo antes de enviar presenças.','“Agora” no protótipo: segunda, 26/10/2026, 18h40. Horários fictícios.','Atividades com 0 ponto registram participação sem somar pontos.'],
+      feito:['A01 Login e 7 estados','P01 Início · antes do envio, em análise e após aprovação','P02 Agenda em lista e calendário, com filtro por tipo','P03 Detalhe da atividade (pontuável, sem pontuação, com ajuste)','P04 Envio: foto, conferência, progresso, cancelamento, resultado, rascunho ao sair','P05 Extrato que reproduz os 250 pontos · P06 reenvio de ajuste','P07 Ranking nas três visões, pódio, posição pessoal e regras · P10 Notificações · P11 Perfil','G02/G03 Fila e análise com aprovar, solicitar ajuste e recusar · G10 consulta da campanha · Acesso restrito','Protótipo conectado: aprovar os 45 pontos de Ana atualiza 250 → 295 no app, no ranking e na gestão'],
+      falta:['A02–A06 Cadastro em etapas, convite e variantes, conta em análise, recuperação pelo WhatsApp, redefinição','P08 Resultados anteriores · P09 Desafios completos · P12 Sobre, privacidade e instalação da PWA','G01, G04–G09 Visão geral, participantes, convite, desafios, ranking de gestão, acompanhamento reservado','AD01–AD11 Administração, incluindo fechamento mensal com cenário de empate','E Estados compartilhados restantes (sem conexão, câmera indisponível, sessão expirada, duplicado, apuração)','Adaptações 768 px e gestão mobile','Jornadas documentadas com início, decisão, resultado e exceções','09 Handoff por componente e tela; roteiro dos 28 cenários de aceite'],
+      nomes:[{nome:'Eu Vou',fg:'var(--color-brand)',leitura:'Curto, falado como convite e compromisso pessoal. Funciona como ícone e como frase em botões. Risco: confundir intenção com presença; por isso a ação se chama Registrar presença.'},{nome:'Presentes',fg:'var(--color-text)',leitura:'Fala de presença e pertencimento. Mais neutro e descritivo; menos energia de mobilização.'},{nome:'Em Comunhão',fg:'var(--color-text)',leitura:'Forte no sentido comunitário, tom mais institucional. Longo para ícone e barra de navegação.'},{nome:'Vamos Juntos',fg:'var(--color-text)',leitura:'Convite coletivo, combina com campanhas. Genérico e próximo de slogans comuns.'}],
+      cores:[{nome:'Marca principal',hex:'#143A66',uso:'Cabeçalhos, navegação, cartão de saldo'},{nome:'Azul de ação',hex:'#1E56A0',uso:'Ação primária, links, foco'},{nome:'Vermelho de marca',hex:'#C8333D',uso:'Símbolo, marcador “Hoje”, pódio 1º'},{nome:'Fundo',hex:'#F6F8FC',uso:'Áreas de base'},{nome:'Superfície',hex:'#FFFFFF',uso:'Cartões e formulários'},{nome:'Texto principal',hex:'#172033',uso:'Leitura principal'},{nome:'Texto secundário',hex:'#566579',uso:'Apoio e legendas'},{nome:'Borda suave',hex:'#DCE3ED',uso:'Separadores não essenciais'},{nome:'Borda de controle',hex:'#7C899B',uso:'Contorno de campos e botões secundários'},{nome:'Sucesso',hex:'#166534',uso:'Aprovação, com texto e ícone'},{nome:'Atenção',hex:'#92400E',uso:'Pendências, com texto e ícone'},{nome:'Erro',hex:'#B42318',uso:'Erros e recusa, com texto e ícone'}],
+      pares:[{amostra:'Texto',fg:'var(--color-text)',bg:'var(--color-surface)',uso:'Texto principal sobre superfície',ratio:'16,3:1'},{amostra:'Apoio',fg:'var(--color-muted)',bg:'var(--color-bg)',uso:'Texto secundário sobre fundo',ratio:'5,5:1'},{amostra:'Link',fg:'var(--color-accent)',bg:'var(--color-surface)',uso:'Azul de ação sobre superfície',ratio:'7,3:1'},{amostra:'Botão',fg:'var(--color-surface)',bg:'var(--color-accent)',uso:'Texto em ação primária',ratio:'7,3:1'},{amostra:'Saldo',fg:'var(--color-surface)',bg:'var(--color-brand)',uso:'Texto sobre a marca',ratio:'11,5:1'},{amostra:'Apoio',fg:'var(--color-accent-200)',bg:'var(--color-brand)',uso:'Texto de apoio sobre a marca',ratio:'9,1:1'},{amostra:'Aprovada',fg:'var(--color-success)',bg:'var(--color-success-bg)',uso:'Situação de sucesso',ratio:'6,3:1'},{amostra:'Em análise',fg:'var(--color-warning)',bg:'var(--color-warning-bg)',uso:'Situação de atenção',ratio:'6,4:1'},{amostra:'Recusada',fg:'var(--color-error)',bg:'var(--color-error-bg)',uso:'Situação de erro',ratio:'5,7:1'},{amostra:'Hoje',fg:'var(--color-red)',bg:'var(--color-surface)',uso:'Vermelho de marca em texto',ratio:'5,3:1'}],
+      tipos:[{spec:'48 / 600',size:'48px',w:600,ls:'-.03em',ex:'295'},{spec:'26 / 500',size:'26px',w:500,ls:'-.02em',ex:'Que bom ter você com a gente.'},{spec:'24 / 500',size:'24px',w:500,ls:'-.02em',ex:'Ranking de outubro'},{spec:'16 / 500',size:'16px',w:500,ls:'0',ex:'Minhas pendências'},{spec:'16 / 400',size:'16px',w:400,ls:'0',ex:'Texto de formulário'},{spec:'15 / 400',size:'15px',w:400,ls:'0',ex:'Cada participação conta.'},{spec:'13 / 400',size:'13px',w:400,ls:'0',ex:'Domingo, 25/10 · 18h00 – 20h30'},{spec:'12 / 500',size:'12px',w:500,ls:'0',ex:'Rótulo mínimo · navegação'}],
+      espacos:[4,8,12,16,20,24,32,40].map(n=>({n,px:n+'px'})),
+      status:st.map(([label,ic,fg,bg])=>({label,icon:'ph '+ic,fg,bg})),
+      inventario:[{n:'Botões',w:'A01 P03'},{n:'Campos',w:'A01 P04'},{n:'Seletor de grupo',w:'A02'},{n:'Avatar',w:'P07 G02'},{n:'Abas segmentadas',w:'P02 P07'},{n:'Filtro de mês',w:'P05'},{n:'Chips de filtro',w:'P02 P05'},{n:'Cartão de atividade',w:'P02'},{n:'Bloco de pontuação',w:'P01'},{n:'Situação (tag)',w:'todas'},{n:'Pódio',w:'P07'},{n:'Item do ranking',w:'P07'},{n:'Tabela',w:'G10'},{n:'Cartão de aprovação',w:'G02'},{n:'Envio de foto',w:'P04'},{n:'Modal',w:'G03'},{n:'Painel inferior',w:'P04 P07'},{n:'Notificação',w:'P10'},{n:'Alerta',w:'A01 P01'},{n:'Estado vazio',w:'G02 P05'},{n:'Barra lateral',w:'G'},{n:'Navegação inferior',w:'P'},{n:'Aviso breve (toast)',w:'P04'},{n:'Linha do tempo',w:'G03'}],
+      estrutura:[{t:'Igreja ou organização',icon:'ph ph-church',pad:'0px'},{t:'Congregação · Vila Demo',icon:'ph ph-buildings',pad:'14px'},{t:'Campanha · Presença que aproxima',icon:'ph ph-flag-banner',pad:'28px'},{t:'Ciclo mensal · Outubro/2026',icon:'ph ph-calendar-blank',pad:'42px'},{t:'Grupos: Jovens · Adolescentes → participantes',icon:'ph ph-users-three',pad:'56px'}],
+      navP:[{i:'ph ph-house',l:'Início'},{i:'ph ph-calendar-blank',l:'Agenda'},{i:'ph ph-check-circle',l:'Presenças'},{i:'ph ph-ranking',l:'Ranking'},{i:'ph ph-user-circle',l:'Perfil'}],
+      matrizHead:['Ação','Admin','Responsável da congregação','Direção da campanha','Direção dos Jovens','Direção dos Adolescentes','Participante'],
+      matriz:M.map(r=>({acao:r[0],cells:r.slice(1).map(cell)})),
+      decisoes:[{id:'D01',t:'Direção da campanha só consulta: sem aprovação, contatos ou fotos.'},{id:'D02',t:'Responsável pela congregação valida os dois grupos da própria congregação.'},{id:'D03',t:'Prazo de envio: do término da atividade até 24 h depois.'},{id:'D04',t:'Apuração até o 3º dia do mês seguinte, 23h59; encerramento manual sem pendências.'},{id:'D05',t:'Desempate: pontos aprovados → cultos oficiais distintos → atividades distintas → sorteio documentado.'},{id:'D06',t:'Uma pessoa pode ser premiada no Geral e no seu grupo; até 9 posições, não 9 pessoas distintas.'},{id:'D07',t:'Premiação exige ao menos um registro aprovado com pontuação positiva.'},{id:'D08',t:'Ranking mostra nome de exibição (primeiro nome + inicial) e avatar opcional.'},{id:'D09',t:'Cadastro novo aguarda aprovação do vínculo antes de enviar presenças.'},{id:'D10',t:'Envio de liderança é revisado por outro aprovador; exceção com justificativa.'},{id:'D11',t:'Uma foto por envio, até 10 MB, reduzida antes do envio.'},{id:'D12',t:'Atividades de ensaio e COI mantidas com 0 ponto até definição.'}],
+      pendencias:['Nome e logo definitivos','Arquivo oficial da IEADPE para ajuste cromático','Número de WhatsApp do administrador','Igreja/congregação e organização do primeiro piloto','Valores dos ensaios e das atividades hoje com zero','Regras etárias dos grupos','Critérios de desempate','Acúmulo de premiação no Geral e no grupo','Janela de envio e calendário de apuração','Política de exposição do nome/avatar e uso de imagens','Autorizações de responsáveis e prazo de retenção das fotos','Permissões propostas onde havia ambiguidade (D01, D02)']
+    };
+  }
+}
+</script>
+</body>
+</html>

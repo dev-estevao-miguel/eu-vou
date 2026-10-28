@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-35f42e47-c325-4f7e-8398-56d6ad2d4ad8/styles.css">
+<script src="_ds/nocturne-35f42e47-c325-4f7e-8398-56d6ad2d4ad8/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>:root{--color-bg:#F6F8FC;--color-surface:#FFFFFF;--color-text:#172033;--color-accent:#1E56A0;--color-divider:#DCE3ED;--color-brand:#143A66;--color-red:#C8333D;--color-red-100:#FBECEE;--color-red-700:#9E2530;--color-muted:#566579;--color-field:#7C899B;--color-success:#166534;--color-success-bg:#E6F4EA;--color-warning:#92400E;--color-warning-bg:#FCF1E3;--color-error:#B42318;--color-error-bg:#FDECEA;--color-accent-100:#EEF4FB;--color-accent-200:#D9E6F6;--color-accent-300:#B3CBEB;--color-accent-600:#184A8C;--color-neutral-100:#F6F8FC;--color-neutral-200:#EDF1F7;--color-neutral-300:#DCE3ED;--shadow-sm:0 0 0 1px #DCE3ED;--shadow-md:0 1px 2px rgba(23,32,51,.06),0 6px 20px rgba(23,32,51,.08);--shadow-lg:0 0 0 1px #DCE3ED,0 16px 40px rgba(23,32,51,.16)}body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:Inter,system-ui,sans-serif}a{color:var(--color-accent)}a:hover{color:var(--color-brand)}@keyframes evspin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style>
+</helmet>
+<div style="width:100%;max-width:430px;height:844px;margin:0 auto;display:flex;flex-direction:column;background:var(--color-bg);border:1px solid var(--color-divider);border-radius:28px;overflow:hidden;position:relative;font-family:Inter,system-ui,sans-serif;color:var(--color-text);font-size:15px;line-height:1.45;box-shadow:var(--shadow-md)">
+<div style="height:34px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums">
+<span>18:40</span>
+<div style="display:flex;align-items:center;gap:6px"><span style="font-size:11px;font-weight:500;color:var(--color-warning);background:var(--color-warning-bg);padding:2px 6px;border-radius:4px">Dados fictícios</span><i class="ph-fill ph-cell-signal-high" style="font-size:15px"></i><i class="ph-fill ph-battery-high" style="font-size:17px"></i></div>
+</div>
+<div ref="{{ scrollRef }}" style="flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;position:relative">
+
+<sc-if value="{{ is.login }}" hint-placeholder-val="{{ true }}">
+<div style="min-height:100%;display:flex;flex-direction:column;padding:20px 20px 16px;gap:20px">
+<div style="display:flex;flex-direction:column;gap:14px;padding-top:24px">
+<div style="display:flex;align-items:center;gap:10px">
+<span style="width:44px;height:44px;border-radius:12px;background:var(--color-brand);display:grid;place-items:center;flex:none"><svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-red)"></circle></svg></span>
+<div><div style="font-size:24px;font-weight:600;letter-spacing:-.02em;color:var(--color-brand);line-height:1.1">Eu Vou</div><div style="font-size:13px;color:var(--color-muted)">Presença que aproxima</div></div>
+</div>
+<div style="font-size:26px;font-weight:500;line-height:1.2;letter-spacing:-.02em;text-wrap:pretty;margin-top:12px">Que bom ter você com a gente.</div>
+<div style="font-size:15px;color:var(--color-muted);text-wrap:pretty">Entre para ver a agenda, registrar presença e acompanhar sua participação.</div>
+</div>
+<sc-if value="{{ lvConvite }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-accent-100);font-size:14px"><i class="ph ph-envelope-open" style="font-size:20px;color:var(--color-accent)"></i><div><div style="font-weight:500">Convite da Congregação Vila Demo</div><div style="color:var(--color-muted)">Grupo: Adolescentes. Já tem conta? Entre para aceitar.</div></div></div>
+</sc-if>
+<sc-if value="{{ lvCred }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-error-bg);font-size:14px"><i class="ph ph-warning-circle" style="font-size:20px;color:var(--color-error)"></i><div><div style="font-weight:500;color:var(--color-error)">Não foi possível entrar</div><div>Confira o nome de usuário e a senha e tente novamente.</div></div></div>
+</sc-if>
+<sc-if value="{{ lvDesativada }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-neutral-200);font-size:14px"><i class="ph ph-user-minus" style="font-size:20px;color:var(--color-muted)"></i><div><div style="font-weight:500">Este acesso está desativado</div><div style="color:var(--color-muted)">Para voltar a participar, fale com a direção do seu grupo.</div></div></div>
+</sc-if>
+<sc-if value="{{ lvTentativas }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-warning-bg);font-size:14px"><i class="ph ph-timer" style="font-size:20px;color:var(--color-warning)"></i><div><div style="font-weight:500;color:var(--color-warning)">Muitas tentativas seguidas</div><div>Por segurança, aguarde 5 minutos para tentar de novo. Se esqueceu a senha, use a recuperação.</div></div></div>
+</sc-if>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<label for="ev-user" style="font-size:14px;font-weight:500">Nome de usuário</label>
+<input id="ev-user" autocomplete="username" autocapitalize="none" placeholder="ex.: anaclara.m" defaultValue="{{ userDefault }}" style="height:48px;padding:0 14px;font-family:inherit;font-size:16px;border:1px solid {{ fieldBorder }};border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)">
+<sc-if value="{{ lvCampos }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;align-items:center;font-size:13px;color:var(--color-error)"><i class="ph ph-warning-circle" style="font-size:16px"></i>Informe seu nome de usuário.</div></sc-if>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label for="ev-pwd" style="font-size:14px;font-weight:500">Senha</label>
+<div style="position:relative">
+<input id="ev-pwd" type="{{ pwdType }}" autocomplete="current-password" defaultValue="{{ pwdDefault }}" style="width:100%;height:48px;padding:0 52px 0 14px;font-family:inherit;font-size:16px;border:1px solid {{ fieldBorder }};border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)">
+<button type="button" aria-label="{{ pwdLabel }}" onClick="{{ togglePwd }}" style="position:absolute;right:2px;top:2px;width:44px;height:44px;border:0;background:transparent;border-radius:6px;display:grid;place-items:center;color:var(--color-muted);cursor:pointer" style-hover="color:var(--color-text)"><i class="{{ pwdIcon }}" style="font-size:22px"></i></button>
+</div>
+<sc-if value="{{ lvCampos }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:6px;align-items:center;font-size:13px;color:var(--color-error)"><i class="ph ph-warning-circle" style="font-size:16px"></i>Informe sua senha.</div></sc-if>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<button onClick="{{ entrar }}" disabled="{{ entrarDisabled }}" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer;opacity:{{ entrarOpacity }}" style-hover="background:var(--color-accent-600)" style-active="background:var(--color-brand)">
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}"><span style="width:18px;height:18px;border-radius:50%;border:2px solid color-mix(in srgb, var(--color-surface) 35%, transparent);border-top-color:var(--color-surface);animation:evspin .8s linear infinite"></span></sc-if>
+<span>{{ entrarLabel }}</span>
+</button>
+<button onClick="{{ toast.cadastro }}" style="min-height:48px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--color-neutral-200)">Criar minha conta</button>
+<button onClick="{{ toast.recuperar }}" style="min-height:44px;border:0;background:transparent;color:var(--color-accent);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;text-decoration:underline;text-underline-offset:3px" style-hover="color:var(--color-brand)">Esqueci minha senha</button>
+</div>
+<div style="margin-top:auto;text-align:center;font-size:12px;color:var(--color-muted);padding-top:12px">Design e desenvolvimento por Estevão Miguel</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is.inicio }}" hint-placeholder-val="{{ false }}">
+<div style="padding-bottom:24px;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:4px 10px 0 20px">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:8px;background:var(--color-brand);display:grid;place-items:center;flex:none"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-red)"></circle></svg></span><span style="font-size:17px;font-weight:600;color:var(--color-brand);letter-spacing:-.01em">Eu Vou</span></div>
+<button aria-label="Notificações" onClick="{{ go.notif }}" style="position:relative;width:44px;height:44px;border-radius:22px;border:0;background:transparent;display:grid;place-items:center;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-bell" style="font-size:24px"></i><sc-if value="{{ hasUnread }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;top:5px;right:5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--color-red);color:var(--color-surface);font-size:11px;font-weight:600;display:grid;place-items:center;border:2px solid var(--color-bg)">{{ unreadCount }}</span></sc-if></button>
+</div>
+<div style="padding:8px 20px 14px;display:flex;flex-direction:column;gap:6px">
+<div style="font-size:24px;font-weight:500;letter-spacing:-.02em">Olá, Ana Clara</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px;color:var(--color-muted)"><span style="display:flex;align-items:center;gap:4px"><i class="ph ph-map-pin" style="font-size:16px"></i>Congregação Vila Demo</span><span style="display:flex;align-items:center;gap:4px"><i class="ph ph-users-three" style="font-size:16px"></i>Adolescentes</span></div>
+</div>
+<sc-if value="{{ dom25Aprovado }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="margin:0 16px 12px;display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-success-bg);font-size:14px"><i class="ph-fill ph-check-circle" style="font-size:20px;color:var(--color-success)"></i><div><div style="font-weight:500;color:var(--color-success)">Presença aprovada</div><div>Culto oficial · Dom 25/10. Você recebeu 45 pontos.</div></div></div>
+</sc-if>
+<div style="margin:0 16px;padding:18px;border-radius:var(--radius-lg);background:var(--color-brand);color:var(--color-surface);display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-size:14px;color:var(--color-accent-200)">Sua participação em outubro</span><span style="font-size:12px;color:var(--color-accent-200);display:flex;align-items:center;gap:4px"><i class="ph ph-circle" style="font-size:10px"></i>Ciclo aberto</span></div>
+<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font-size:48px;font-weight:600;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums">{{ myPts }}</span><span style="font-size:15px;color:var(--color-accent-200)">pontos aprovados</span></div>
+<sc-if value="{{ hasPending }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:8px;align-items:flex-start;padding:10px 12px;border-radius:var(--radius-md);background:color-mix(in srgb, var(--color-surface) 10%, transparent);font-size:14px"><i class="ph ph-hourglass-medium" style="font-size:18px;margin-top:1px"></i><span><span style="font-weight:600">{{ myPending }} pontos em análise.</span> Entram no saldo somente após a aprovação.</span></div></sc-if>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:8px;align-items:center;padding-top:12px;border-top:1px solid color-mix(in srgb, var(--color-surface) 16%, transparent)">
+<div><div style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums">{{ posGeral }}º</div><div style="font-size:12px;color:var(--color-accent-200)">no Geral</div></div>
+<div><div style="font-size:20px;font-weight:600;font-variant-numeric:tabular-nums">{{ posGrupo }}º</div><div style="font-size:12px;color:var(--color-accent-200)">em Adolescentes</div></div>
+<button onClick="{{ go.presencas }}" style="min-height:44px;padding:0 14px;border-radius:var(--radius-md);border:1px solid color-mix(in srgb, var(--color-surface) 45%, transparent);background:transparent;color:var(--color-surface);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer" style-hover="background:color-mix(in srgb, var(--color-surface) 12%, transparent)">Ver extrato</button>
+</div>
+</div>
+<sc-if value="{{ canRegister }}" hint-placeholder-val="{{ false }}">
+<div style="padding:20px 20px 8px;font-size:16px;font-weight:500">Pode registrar agora</div>
+<div style="margin:0 16px;padding:16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:3px 8px;border-radius:6px;color:var(--color-accent);background:var(--color-accent-100)"><i class="ph ph-camera" style="font-size:14px"></i>Disponível para registro</span><span style="font-size:13px;color:var(--color-muted);display:flex;align-items:center;gap:4px"><i class="ph ph-clock" style="font-size:15px"></i>Envio até hoje, 20h30</span></div>
+<div><div style="font-size:18px;font-weight:500">Culto oficial</div><div style="font-size:14px;color:var(--color-muted)">Domingo, 25/10 · 18h00 – 20h30 · 45 pontos se aprovada</div></div>
+<button onClick="{{ registerDom25 }}" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--color-accent-600)" style-active="background:var(--color-brand)"><i class="ph ph-camera" style="font-size:20px"></i>Registrar presença</button>
+</div>
+</sc-if>
+<div style="padding:20px 20px 8px;font-size:16px;font-weight:500">Minhas pendências</div>
+<div style="margin:0 16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<sc-for list="{{ pendencias }}" as="p" hint-placeholder-count="2">
+<button onClick="{{ p.open }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px 16px;min-height:64px;border:0;border-bottom:1px solid var(--color-divider);background:transparent;font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-100)">
+<span style="width:36px;height:36px;border-radius:18px;display:grid;place-items:center;flex:none;background:{{ p.tag.bg }};color:{{ p.tag.fg }}"><i class="{{ p.tag.icon }}" style="font-size:20px"></i></span>
+<span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:500">{{ p.title }} · {{ p.dow3 }} {{ p.date }}</span><span style="display:block;font-size:13px;color:{{ p.tag.fg }}">{{ p.tag.label }} · {{ p.hint }}</span></span>
+<i class="ph ph-caret-right" style="font-size:18px;color:var(--color-muted)"></i>
+</button>
+</sc-for>
+<sc-if value="{{ noPendencias }}" hint-placeholder-val="{{ false }}"><div style="padding:16px;font-size:14px;color:var(--color-muted)">Nenhuma pendência no momento.</div></sc-if>
+</div>
+<div style="padding:20px 20px 8px;font-size:16px;font-weight:500">Próxima atividade</div>
+<button onClick="{{ openSeg26 }}" style="margin:0 16px;padding:14px 16px;display:flex;gap:14px;align-items:center;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="border-color:var(--color-accent-300)">
+<span style="width:48px;flex:none;text-align:center;padding:6px 0;border-radius:var(--radius-md);background:var(--color-neutral-200)"><span style="display:block;font-size:11px;font-weight:600;color:var(--color-red);letter-spacing:.04em">HOJE</span><span style="display:block;font-size:15px;font-weight:600">19h30</span></span>
+<span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:500">Ensaio do órgão de louvor</span><span style="display:block;font-size:13px;color:var(--color-muted)">Atividade sem pontuação · registro abre às 21h00</span></span>
+<i class="ph ph-caret-right" style="font-size:18px;color:var(--color-muted)"></i>
+</button>
+<div style="padding:20px 20px 8px;font-size:16px;font-weight:500">Desafio em destaque</div>
+<button onClick="{{ openDesafio }}" style="margin:0 16px;padding:16px;display:flex;flex-direction:column;gap:8px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="border-color:var(--color-accent-300)">
+<span style="display:flex;justify-content:space-between;width:100%;align-items:center"><span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--color-red-700)"><i class="ph ph-flag" style="font-size:15px"></i>Desafio · Adolescentes</span><span style="font-size:13px;font-weight:600;color:var(--color-brand);background:var(--color-accent-100);padding:2px 8px;border-radius:6px">30 pts</span></span>
+<span style="font-size:16px;font-weight:500">Mutirão de serviço no pátio</span>
+<span style="font-size:13px;color:var(--color-muted)">Sáb 31/10 · organizado pela direção dos Adolescentes · exemplo fictício</span>
+</button>
+<div style="margin:20px 20px 0;font-size:13px;color:var(--color-muted);display:flex;gap:6px"><i class="ph ph-info" style="font-size:16px;flex:none;margin-top:1px"></i><span>Envios do ciclo de outubro até 01/11 para a última atividade do mês. Apuração até 03/11, 23h59 (proposta).</span></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is.agenda }}" hint-placeholder-val="{{ false }}">
+<div style="padding-bottom:24px">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:4px 10px 0 20px"><div style="font-size:24px;font-weight:500;letter-spacing:-.02em">Agenda</div><button aria-label="Notificações" onClick="{{ go.notif }}" style="width:44px;height:44px;border-radius:22px;border:0;background:transparent;display:grid;place-items:center;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-bell" style="font-size:24px"></i></button></div>
+<div style="padding:2px 20px 12px;font-size:13px;color:var(--color-muted)">Vila Demo · atividades para Adolescentes · horários fictícios</div>
+<div style="padding:0 16px 12px;display:flex;flex-direction:column;gap:10px">
+<div role="tablist" style="display:grid;grid-template-columns:1fr 1fr;padding:3px;border-radius:10px;background:var(--color-neutral-200)">
+<sc-for list="{{ agModes }}" as="m" hint-placeholder-count="2"><button role="tab" aria-selected="{{ m.on }}" onClick="{{ m.pick }}" style="min-height:40px;border:0;border-radius:8px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;background:{{ m.bg }};color:{{ m.fg }};box-shadow:{{ m.sh }}"><i class="{{ m.icon }}" style="font-size:18px"></i>{{ m.label }}</button></sc-for>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<sc-for list="{{ agChips }}" as="c" hint-placeholder-count="5"><button aria-pressed="{{ c.on }}" onClick="{{ c.pick }}" style="min-height:36px;padding:0 12px;border-radius:18px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font-family:inherit;font-size:14px;font-weight:500;cursor:pointer">{{ c.label }}</button></sc-for>
+</div>
+</div>
+<sc-if value="{{ agLista }}" hint-placeholder-val="{{ true }}">
+<sc-for list="{{ agDays }}" as="day" hint-placeholder-count="3">
+<div style="padding:12px 20px 6px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500"><span>{{ day.label }}</span><sc-if value="{{ day.today }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;color:var(--color-surface);background:var(--color-red);padding:1px 6px;border-radius:4px">HOJE</span></sc-if><sc-if value="{{ day.nextCycle }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:var(--color-muted);font-weight:400">· conta para novembro</span></sc-if></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:0 16px">
+<sc-for list="{{ day.items }}" as="o" hint-placeholder-count="1">
+<button onClick="{{ o.open }}" style="display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="border-color:var(--color-accent-300)">
+<span style="width:52px;flex:none;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;padding-top:1px">{{ o.start }}</span>
+<span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px"><span style="font-size:15px;font-weight:500">{{ o.title }}</span><span style="font-size:13px;color:var(--color-muted)">{{ o.type }} · {{ o.pub }}</span><span style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;background:{{ o.ptsBg }};color:{{ o.ptsFg }}">{{ o.ptsLabel }}</span><span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;padding:3px 8px;border-radius:6px;background:{{ o.tag.bg }};color:{{ o.tag.fg }}"><i class="{{ o.tag.icon }}" style="font-size:14px"></i>{{ o.tag.label }}</span></span></span>
+<i class="ph ph-caret-right" style="font-size:18px;color:var(--color-muted);margin-top:2px"></i>
+</button>
+</sc-for>
+</div>
+</sc-for>
+</sc-if>
+<sc-if value="{{ agCal }}" hint-placeholder-val="{{ false }}">
+<div style="margin:0 16px;padding:12px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider)">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:0 4px 8px"><span style="font-size:15px;font-weight:500">Outubro de 2026</span><span style="font-size:12px;color:var(--color-muted)">Ciclo aberto</span></div>
+<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));text-align:center;font-size:12px;color:var(--color-muted);padding-bottom:4px"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+<div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px">
+<sc-for list="{{ calCells }}" as="c" hint-placeholder-count="35"><button onClick="{{ c.pick }}" disabled="{{ c.empty }}" aria-label="{{ c.aria }}" style="height:44px;border-radius:10px;border:1.5px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-variant-numeric:tabular-nums;visibility:{{ c.vis }}"><span>{{ c.n }}</span><span style="width:6px;height:6px;border-radius:3px;background:{{ c.dot }}"></span></button></sc-for>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:4px 12px;padding:10px 4px 0;font-size:12px;color:var(--color-muted)"><span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:4px;background:var(--color-success)"></span>Aprovada</span><span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:4px;background:var(--color-warning)"></span>Em análise ou ajuste</span><span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;border-radius:4px;background:var(--color-error)"></span>Recusada</span></div>
+</div>
+<div style="padding:16px 20px 6px;font-size:14px;font-weight:500">{{ calDayLabel }}</div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:0 16px">
+<sc-for list="{{ calItems }}" as="o" hint-placeholder-count="1">
+<button onClick="{{ o.open }}" style="display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="border-color:var(--color-accent-300)">
+<span style="width:52px;flex:none;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums">{{ o.start }}</span>
+<span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px"><span style="font-size:15px;font-weight:500">{{ o.title }}</span><span style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:12px;font-weight:600;padding:3px 8px;border-radius:6px;background:{{ o.ptsBg }};color:{{ o.ptsFg }}">{{ o.ptsLabel }}</span><span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;padding:3px 8px;border-radius:6px;background:{{ o.tag.bg }};color:{{ o.tag.fg }}"><i class="{{ o.tag.icon }}" style="font-size:14px"></i>{{ o.tag.label }}</span></span></span>
+</button>
+</sc-for>
+<sc-if value="{{ calEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:20px 16px;text-align:center;font-size:14px;color:var(--color-muted);border:1px dashed var(--color-field);border-radius:var(--radius-lg)">Sem atividade desse tipo nesta data.</div></sc-if>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ is.atividade }}" hint-placeholder-val="{{ false }}">
+<div style="min-height:100%;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:4px;padding:4px 10px"><button aria-label="Voltar" onClick="{{ go.agenda }}" style="width:44px;height:44px;border-radius:22px;border:0;background:transparent;display:grid;place-items:center;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-arrow-left" style="font-size:24px"></i></button><span style="font-size:16px;font-weight:500">Atividade</span></div>
+<div style="padding:4px 20px 16px;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:13px;color:var(--color-muted)">{{ d.type }} · {{ d.dow }}, {{ d.date }}</span>
+<div style="font-size:26px;font-weight:500;letter-spacing:-.02em;line-height:1.15">{{ d.title }}</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px"><span style="font-size:13px;font-weight:600;padding:4px 10px;border-radius:6px;background:{{ d.ptsBg }};color:{{ d.ptsFg }}">{{ d.ptsLabel }}</span><span style="display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:500;padding:4px 10px;border-radius:6px;background:{{ d.tag.bg }};color:{{ d.tag.fg }}"><i class="{{ d.tag.icon }}" style="font-size:15px"></i>{{ d.tag.label }}</span></div>
+</div>
+<div style="margin:0 16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider)">
+<sc-for list="{{ d.rows }}" as="r" hint-placeholder-count="6"><div style="display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid var(--color-divider)"><i class="{{ r.icon }}" style="font-size:20px;color:var(--color-muted);flex:none;margin-top:1px"></i><div style="min-width:0"><div style="font-size:12px;color:var(--color-muted)">{{ r.k }}</div><div style="font-size:15px">{{ r.v }}</div></div></div></sc-for>
+</div>
+<sc-if value="{{ d.zero }}" hint-placeholder-val="{{ false }}"><div style="margin:12px 16px 0;display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-neutral-200);font-size:14px"><i class="ph ph-info" style="font-size:20px;color:var(--color-muted)"></i><span>Atividade sem pontuação. O registro conta como participação, mas não soma pontos ao saldo.</span></div></sc-if>
+<sc-if value="{{ d.hasReason }}" hint-placeholder-val="{{ false }}"><div style="margin:12px 16px 0;display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:{{ d.tag.bg }};font-size:14px"><i class="{{ d.tag.icon }}" style="font-size:20px;color:{{ d.tag.fg }}"></i><div><div style="font-weight:500;color:{{ d.tag.fg }}">Motivo informado pela direção</div><div>{{ d.reason }}</div></div></div></sc-if>
+<div style="margin:16px 16px 0;padding:16px;border-radius:var(--radius-lg);background:var(--color-neutral-200);display:flex;flex-direction:column;gap:8px;font-size:14px">
+<div style="font-weight:500;font-size:15px">Como comprovar</div>
+<div style="display:flex;gap:8px"><i class="ph ph-camera" style="font-size:18px;flex:none"></i>Uma foto ao final da atividade. Não precisa ser selfie.</div>
+<div style="display:flex;gap:8px"><i class="ph ph-users" style="font-size:18px;flex:none"></i>Evite enquadrar outras pessoas sem necessidade.</div>
+<div style="display:flex;gap:8px"><i class="ph ph-hands-praying" style="font-size:18px;flex:none"></i>Respeite o momento do culto: registre depois do encerramento.</div>
+<div style="display:flex;gap:8px"><i class="ph ph-lock-simple" style="font-size:18px;flex:none"></i>A foto é privada e é vista apenas pela liderança autorizada.</div>
+</div>
+<div style="margin-top:auto;position:sticky;bottom:0;padding:16px;background:linear-gradient(to top, var(--color-bg) 75%, transparent)">
+<sc-if value="{{ d.canRegister }}" hint-placeholder-val="{{ false }}"><button onClick="{{ register }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--color-accent-600)" style-active="background:var(--color-brand)"><i class="ph ph-camera" style="font-size:20px"></i>{{ d.ctaLabel }}</button></sc-if>
+<sc-if value="{{ d.noCta }}" hint-placeholder-val="{{ false }}"><div style="text-align:center;font-size:14px;color:var(--color-muted);padding:8px">{{ d.ctaNote }}</div></sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is.envio }}" hint-placeholder-val="{{ false }}">
+<div style="min-height:100%;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:4px;padding:4px 10px"><button aria-label="Voltar" onClick="{{ envioBack }}" style="width:44px;height:44px;border-radius:22px;border:0;background:transparent;display:grid;place-items:center;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-arrow-left" style="font-size:24px"></i></button><span style="font-size:16px;font-weight:500;flex:1">{{ envioTitle }}</span><span style="font-size:13px;color:var(--color-muted);padding-right:10px">{{ stepLabel }}</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 20px 12px"><sc-for list="{{ stepBars }}" as="b" hint-placeholder-count="3"><span style="height:4px;border-radius:2px;background:{{ b.bg }}"></span></sc-for></div>
+<div style="margin:0 16px 12px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-divider);display:flex;justify-content:space-between;gap:8px;align-items:center"><div style="min-width:0"><div style="font-size:15px;font-weight:500">{{ t.title }}</div><div style="font-size:13px;color:var(--color-muted)">{{ t.dow3 }} {{ t.date }} · {{ t.time }}</div></div><span style="font-size:13px;font-weight:600;padding:3px 8px;border-radius:6px;background:{{ t.ptsBg }};color:{{ t.ptsFg }};white-space:nowrap">{{ t.ptsLabel }}</span></div>
+<sc-if value="{{ stepFoto }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:12px">
+<sc-if value="{{ isReenvio }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:10px;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-warning-bg);font-size:14px"><i class="ph ph-arrow-counter-clockwise" style="font-size:20px;color:var(--color-warning)"></i><div><div style="font-weight:500;color:var(--color-warning)">Ajuste solicitado</div><div>{{ sexReason }}</div></div></div></sc-if>
+<div style="font-size:20px;font-weight:500;letter-spacing:-.01em">Envie uma foto da atividade</div>
+<button onClick="{{ pickCamera }}" style="display:flex;align-items:center;gap:14px;padding:18px 16px;min-height:72px;border-radius:var(--radius-lg);border:1.5px solid var(--color-accent);background:var(--color-accent-100);font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-accent-200)"><span style="width:44px;height:44px;border-radius:22px;background:var(--color-accent);color:var(--color-surface);display:grid;place-items:center;flex:none"><i class="ph ph-camera" style="font-size:24px"></i></span><span><span style="display:block;font-size:16px;font-weight:500">Tirar foto</span><span style="display:block;font-size:13px;color:var(--color-muted)">Abre a câmera do celular</span></span></button>
+<button onClick="{{ pickGallery }}" style="display:flex;align-items:center;gap:14px;padding:18px 16px;min-height:72px;border-radius:var(--radius-lg);border:1px solid var(--color-field);background:var(--color-surface);font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-200)"><span style="width:44px;height:44px;border-radius:22px;background:var(--color-neutral-200);display:grid;place-items:center;flex:none"><i class="ph ph-images" style="font-size:24px"></i></span><span><span style="display:block;font-size:16px;font-weight:500">Escolher da galeria</span><span style="display:block;font-size:13px;color:var(--color-muted)">Uma foto por envio</span></span></button>
+<div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--color-muted);padding:4px 2px"><div style="display:flex;gap:6px"><i class="ph ph-file-image" style="font-size:16px;flex:none"></i>JPG, PNG ou HEIC, até 10 MB. A foto é reduzida antes do envio para economizar dados (proposta).</div><div style="display:flex;gap:6px"><i class="ph ph-eye" style="font-size:16px;flex:none"></i>A direção do seu grupo confere a foto. Ela não aparece no ranking nem vira foto de perfil.</div></div>
+</div>
+</sc-if>
+<sc-if value="{{ stepConferir }}" hint-placeholder-val="{{ false }}">
+<div style="padding:0 16px;display:flex;flex-direction:column;gap:12px">
+<div style="font-size:20px;font-weight:500;letter-spacing:-.01em">Confira antes de enviar</div>
+<div role="img" aria-label="Prévia da foto escolhida (ilustrativa)" style="aspect-ratio:4/3;border-radius:var(--radius-lg);background:repeating-linear-gradient(135deg, var(--color-neutral-200) 0 10px, var(--color-neutral-100) 10px 20px);border:1px solid var(--color-divider);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--color-muted);font-size:13px"><i class="ph ph-image" style="font-size:36px"></i>Prévia da foto (ilustrativa)</div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--color-muted)"><span>{{ photoInfo }}</span><button onClick="{{ trocarFoto }}" style="min-height:44px;padding:0 12px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px" style-hover="background:var(--color-neutral-200)"><i class="ph ph-arrows-clockwise" style="font-size:18px"></i>Trocar foto</button></div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<label for="ev-note" style="font-size:14px;font-weight:500">Observação <span style="font-weight:400;color:var(--color-muted)">(opcional)</span></label>
+<textarea id="ev-note" maxlength="200" onChange="{{ onNote }}" placeholder="Ex.: cheguei no início do culto com a turma do louvor." style="min-height:84px;padding:12px 14px;font-family:inherit;font-size:16px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);resize:vertical"></textarea>
+<div style="font-size:12px;color:var(--color-muted);text-align:right">{{ noteCount }}/200</div>
+</div>
+<div style="padding:12px 14px;border-radius:var(--radius-md);background:var(--color-neutral-200);font-size:14px;display:flex;gap:10px"><i class="ph ph-info" style="font-size:20px;color:var(--color-muted);flex:none"></i><span>{{ conferirNote }}</span></div>
+</div>
+</sc-if>
+<sc-if value="{{ stepEnviando }}" hint-placeholder-val="{{ false }}">
+<div style="padding:24px 16px;display:flex;flex-direction:column;gap:14px;align-items:stretch">
+<div style="font-size:20px;font-weight:500">Enviando foto…</div>
+<div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progress }}" style="height:8px;border-radius:4px;background:var(--color-neutral-200);overflow:hidden"><div style="height:100%;width:{{ progressW }};background:var(--color-accent);border-radius:4px;transition:width .12s linear"></div></div>
+<div style="font-size:14px;color:var(--color-muted)">{{ progress }}% · mantenha esta tela aberta. Se a conexão cair, a foto fica salva neste dispositivo.</div>
+<button onClick="{{ cancelarEnvio }}" style="align-self:flex-start;min-height:44px;padding:0 14px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer" style-hover="background:var(--color-neutral-200)">Cancelar envio</button>
+</div>
+</sc-if>
+<sc-if value="{{ stepResultado }}" hint-placeholder-val="{{ false }}">
+<div style="padding:20px 16px;display:flex;flex-direction:column;gap:14px">
+<span style="width:56px;height:56px;border-radius:28px;background:var(--color-warning-bg);color:var(--color-warning);display:grid;place-items:center"><i class="ph ph-hourglass-medium" style="font-size:30px"></i></span>
+<div style="font-size:24px;font-weight:500;letter-spacing:-.02em">{{ resultTitle }}</div>
+<div style="font-size:15px;color:var(--color-muted);text-wrap:pretty">{{ resultText }}</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<div style="padding:12px;border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-divider)"><div style="font-size:12px;color:var(--color-muted)">Aprovados em outubro</div><div style="font-size:22px;font-weight:600;font-variant-numeric:tabular-nums">{{ myPts }}</div></div>
+<div style="padding:12px;border-radius:var(--radius-md);background:var(--color-warning-bg)"><div style="font-size:12px;color:var(--color-warning)">Em análise</div><div style="font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-warning)">{{ myPendingAll }}</div></div>
+</div>
+<div style="font-size:13px;color:var(--color-muted)">Você recebe uma notificação aqui no app quando a direção decidir.</div>
+</div>
+</sc-if>
+<div style="margin-top:auto;position:sticky;bottom:0;padding:16px;display:flex;flex-direction:column;gap:8px;background:linear-gradient(to top, var(--color-bg) 75%, transparent)">
+<sc-if value="{{ stepConferir }}" hint-placeholder-val="{{ false }}"><button onClick="{{ enviar }}" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--color-accent-600)" style-active="background:var(--color-brand)"><i class="ph ph-paper-plane-tilt" style="font-size:20px"></i>Enviar para análise</button></sc-if>
+<sc-if value="{{ stepResultado }}" hint-placeholder-val="{{ false }}"><button onClick="{{ go.presencas }}" style="width:100%;min-height:52px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--color-accent-600)">Ver minhas presenças</button><button onClick="{{ go.inicio }}" style="width:100%;min-height:48px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer" style-hover="background:var(--color-neutral-200)">Voltar ao início</button></sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is.presencas }}" hint-placeholder-val="{{ false }}">
+<div style="padding-bottom:24px">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:4px 10px 0 20px"><div style="font-size:24px;font-weight:500;letter-spacing:-.02em">Minhas presenças</div><button aria-label="Notificações" onClick="{{ go.notif }}" style="width:44px;height:44px;border-radius:22px;border:0;background:transparent;display:grid;place-items:center;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-bell" style="font-size:24px"></i></button></div>
+<div style="display:flex;align-items:center;justify-content:space-between;margin:8px 16px 12px;padding:4px;border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-divider)"><button aria-label="Mês anterior" onClick="{{ toast.mes }}" style="width:44px;height:44px;border:0;background:transparent;border-radius:6px;cursor:pointer;color:var(--color-text);display:grid;place-items:center" style-hover="background:var(--color-neutral-200)"><i class="ph ph-caret-left" style="font-size:20px"></i></button><span style="font-size:15px;font-weight:500">Outubro/2026 · ciclo aberto</span><button aria-label="Próximo mês" disabled="{{ true }}" style="width:44px;height:44px;border:0;background:transparent;border-radius:6px;color:var(--color-text);opacity:.35;display:grid;place-items:center"><i class="ph ph-caret-right" style="font-size:20px"></i></button></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 16px">
+<div style="padding:12px;border-radius:var(--radius-md);background:var(--color-success-bg)"><div style="font-size:12px;color:var(--color-success);display:flex;align-items:center;gap:4px"><i class="ph ph-check-circle" style="font-size:14px"></i>Aprovados</div><div style="font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-success)">{{ myPts }}</div><div style="font-size:12px;color:var(--color-success)">pontos</div></div>
+<div style="padding:12px;border-radius:var(--radius-md);background:var(--color-warning-bg)"><div style="font-size:12px;color:var(--color-warning);display:flex;align-items:center;gap:4px"><i class="ph ph-hourglass-medium" style="font-size:14px"></i>Em análise</div><div style="font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-warning)">{{ myPendingAll }}</div><div style="font-size:12px;color:var(--color-warning)">pontos</div></div>
+<div style="padding:12px;border-radius:var(--radius-md);background:var(--color-neutral-200)"><div style="font-size:12px;color:var(--color-muted);display:flex;align-items:center;gap:4px"><i class="ph ph-minus-circle" style="font-size:14px"></i>Não somados</div><div style="font-size:22px;font-weight:600;font-variant-numeric:tabular-nums">{{ notCounted }}</div><div style="font-size:12px;color:var(--color-muted)">registros</div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;padding:14px 16px 6px">
+<sc-for list="{{ presChips }}" as="c" hint-placeholder-count="5"><button aria-pressed="{{ c.on }}" onClick="{{ c.pick }}" style="min-height:36px;padding:0 12px;border-radius:18px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font-family:inherit;font-size:14px;font-weight:500;cursor:pointer">{{ c.label }}</button></sc-for>
+</div>
+<div style="padding:8px 20px 6px;font-size:14px;font-weight:500">Extrato do mês</div>
+<div style="margin:0 16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<sc-for list="{{ presList }}" as="r" hint-placeholder-count="6">
+<button onClick="{{ r.open }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:64px;border:0;border-bottom:1px solid var(--color-divider);background:transparent;font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-100)">
+<span style="width:44px;flex:none;text-align:center"><span style="display:block;font-size:11px;color:var(--color-muted)">{{ r.dow3 }}</span><span style="display:block;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums">{{ r.dd }}</span></span>
+<span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:500">{{ r.title }}</span><span style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:{{ r.tag.fg }}"><i class="{{ r.tag.icon }}" style="font-size:14px"></i>{{ r.tag.label }}</span></span>
+<span style="text-align:right;flex:none"><span style="display:block;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;color:{{ r.ptsColor }}">{{ r.ptsTxt }}</span><span style="display:block;font-size:12px;color:var(--color-muted)">{{ r.ptsSub }}</span></span>
+</button>
+</sc-for>
+<sc-if value="{{ presEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:28px 16px;text-align:center;font-size:14px;color:var(--color-muted)">Nenhum registro com esse filtro neste mês.</div></sc-if>
+<div style="display:flex;justify-content:space-between;padding:14px 16px;background:var(--color-neutral-100);font-size:14px"><span style="font-weight:500">Total aprovado em outubro</span><span style="font-weight:600;font-variant-numeric:tabular-nums">{{ myPts }} pontos</span></div>
+</div>
+<div style="margin:12px 20px 0;font-size:13px;color:var(--color-muted)">Cada atividade soma pontos uma única vez. Reenvios corrigem o registro existente.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is.ranking }}" hint-placeholder-val="{{ false }}">
+<div style="padding-bottom:24px">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:4px 10px 0 20px"><div style="font-size:24px;font-weight:500;letter-spacing:-.02em">Ranking de outubro</div><button aria-label="Notificações" onClick="{{ go.notif }}" style="width:44px;height:44px;border-radius:22px;border:0;background:transparent;display:grid;place-items:center;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-bell" style="font-size:24px"></i></button></div>
+<div style="padding:2px 20px 12px;font-size:13px;color:var(--color-muted)">Vila Demo · Presença que aproxima · ciclo aberto · atualizado {{ rankUpdated }}</div>
+<div role="tablist" style="margin:0 16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:3px;border-radius:10px;background:var(--color-neutral-200)">
+<sc-for list="{{ rankTabs }}" as="m" hint-placeholder-count="3"><button role="tab" aria-selected="{{ m.on }}" onClick="{{ m.pick }}" style="min-height:40px;border:0;border-radius:8px;font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;background:{{ m.bg }};color:{{ m.fg }};box-shadow:{{ m.sh }}">{{ m.label }}</button></sc-for>
+</div>
+<div style="margin:12px 16px 0;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-accent-100);border:1px solid var(--color-accent-300);display:flex;align-items:center;gap:12px">
+<span style="font-size:22px;font-weight:600;color:var(--color-brand);font-variant-numeric:tabular-nums;width:40px">{{ me.pos }}º</span>
+<span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:500">Sua posição</span><span style="display:block;font-size:13px;color:var(--color-muted)">{{ me.sub }}</span></span>
+<span style="text-align:right"><span style="display:block;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums">{{ me.pts }}</span><span style="display:block;font-size:12px;color:var(--color-muted)">pontos</span></span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;gap:8px;padding:20px 16px 0">
+<sc-for list="{{ podium }}" as="p" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0">
+<span style="width:{{ p.av }};height:{{ p.av }};border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:600;background:{{ p.avBg }};color:{{ p.avFg }};box-shadow:{{ p.ring }}">{{ p.ini }}</span>
+<span style="font-size:14px;font-weight:500;text-align:center;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.name }}</span>
+<span style="font-size:13px;color:var(--color-muted);font-variant-numeric:tabular-nums">{{ p.pts }} pts</span>
+<span style="width:100%;height:{{ p.h }};border-radius:10px 10px 4px 4px;background:{{ p.base }};display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:8px;border-top:3px solid {{ p.top }}"><span style="font-size:20px;font-weight:600;color:var(--color-brand)">{{ p.pos }}º</span><sc-if value="{{ p.tie }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;color:var(--color-warning)">empate</span></sc-if></span>
+</div>
+</sc-for>
+</div>
+<div style="margin:0 16px;border-radius:0 0 var(--radius-lg) var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<sc-for list="{{ restList }}" as="r" hint-placeholder-count="6">
+<div style="display:flex;align-items:center;gap:12px;padding:10px 14px;min-height:56px;border-bottom:1px solid var(--color-divider);background:{{ r.rowBg }}">
+<span style="width:28px;font-size:14px;font-weight:600;color:var(--color-muted);font-variant-numeric:tabular-nums">{{ r.pos }}º</span>
+<span style="width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600;background:{{ r.avBg }};color:{{ r.avFg }};flex:none">{{ r.ini }}</span>
+<span style="flex:1;min-width:0"><span style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:500">{{ r.name }}<sc-if value="{{ r.me }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;color:var(--color-surface);background:var(--color-accent);padding:1px 6px;border-radius:4px">VOCÊ</span></sc-if></span><sc-if value="{{ r.showGroup }}" hint-placeholder-val="{{ false }}"><span style="display:block;font-size:12px;color:var(--color-muted)">{{ r.group }}</span></sc-if></span>
+<span style="font-size:15px;font-weight:600;font-variant-numeric:tabular-nums">{{ r.pts }}</span>
+</div>
+</sc-for>
+</div>
+<div style="margin:12px 16px 0;display:flex;flex-direction:column;gap:8px">
+<button onClick="{{ openRegras }}" style="min-height:48px;display:flex;align-items:center;gap:10px;padding:0 14px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;text-align:left" style-hover="background:var(--color-neutral-200)"><i class="ph ph-question" style="font-size:20px;color:var(--color-accent)"></i><span style="flex:1">Como funciona a pontuação</span><i class="ph ph-caret-right" style="font-size:18px;color:var(--color-muted)"></i></button>
+<div style="font-size:13px;color:var(--color-muted);display:flex;gap:6px"><i class="ph ph-info" style="font-size:16px;flex:none;margin-top:1px"></i><span>O ranking mostra a participação registrada e aprovada na campanha. Pontos em análise não entram na classificação. Três posições são premiadas em cada classificação.</span></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is.perfil }}" hint-placeholder-val="{{ false }}">
+<div style="padding-bottom:24px">
+<div style="padding:4px 20px 0;font-size:24px;font-weight:500;letter-spacing:-.02em;min-height:44px;display:flex;align-items:center">Perfil</div>
+<div style="display:flex;align-items:center;gap:14px;padding:12px 20px 16px">
+<span style="width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:24px;font-weight:600;background:var(--color-red-100);color:var(--color-red-700);flex:none">AC</span>
+<div style="min-width:0"><div style="font-size:20px;font-weight:500">Ana Clara Moura</div><div style="font-size:14px;color:var(--color-muted)">@anaclara.m · no ranking: Ana Clara M.</div><div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap"><span style="font-size:12px;font-weight:500;padding:2px 8px;border-radius:6px;background:var(--color-accent-100);color:var(--color-brand)">Adolescentes</span><span style="font-size:12px;font-weight:500;padding:2px 8px;border-radius:6px;background:var(--color-neutral-200);color:var(--color-muted)">Vila Demo</span></div></div>
+</div>
+<div style="padding:4px 20px 6px;font-size:13px;font-weight:500;color:var(--color-muted)">Você pode alterar</div>
+<div style="margin:0 16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<sc-for list="{{ perfilEdit }}" as="r" hint-placeholder-count="4"><button onClick="{{ toast.perfil }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:56px;border:0;border-bottom:1px solid var(--color-divider);background:transparent;font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-100)"><i class="{{ r.icon }}" style="font-size:20px;color:var(--color-muted)"></i><span style="flex:1;min-width:0"><span style="display:block;font-size:15px">{{ r.k }}</span><span style="display:block;font-size:13px;color:var(--color-muted)">{{ r.v }}</span></span><i class="ph ph-pencil-simple" style="font-size:18px;color:var(--color-accent)"></i></button></sc-for>
+</div>
+<div style="padding:16px 20px 6px;font-size:13px;font-weight:500;color:var(--color-muted)">Mudanças que passam por análise</div>
+<div style="margin:0 16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<sc-for list="{{ perfilLock }}" as="r" hint-placeholder-count="3"><div style="display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:56px;border-bottom:1px solid var(--color-divider)"><i class="{{ r.icon }}" style="font-size:20px;color:var(--color-muted)"></i><span style="flex:1;min-width:0"><span style="display:block;font-size:15px">{{ r.k }}</span><span style="display:block;font-size:13px;color:var(--color-muted)">{{ r.v }}</span></span><i class="ph ph-lock-simple" style="font-size:18px;color:var(--color-muted)" aria-label="Exige análise"></i></div></sc-for>
+<div style="padding:12px 14px;font-size:13px;color:var(--color-muted)">Troca de grupo vale a partir do próximo ciclo. Fale com a direção do seu grupo.</div>
+</div>
+<div style="padding:16px 20px 6px;font-size:13px;font-weight:500;color:var(--color-muted)">Ajuda e segurança</div>
+<div style="margin:0 16px;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<sc-for list="{{ perfilHelp }}" as="r" hint-placeholder-count="4"><button onClick="{{ r.go }}" style="width:100%;display:flex;align-items:center;gap:12px;padding:12px 14px;min-height:52px;border:0;border-bottom:1px solid var(--color-divider);background:transparent;font-family:inherit;text-align:left;color:{{ r.fg }};cursor:pointer" style-hover="background:var(--color-neutral-100)"><i class="{{ r.icon }}" style="font-size:20px"></i><span style="flex:1;font-size:15px">{{ r.k }}</span><i class="ph ph-caret-right" style="font-size:18px;color:var(--color-muted)"></i></button></sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ is.notif }}" hint-placeholder-val="{{ false }}">
+<div style="padding-bottom:24px">
+<div style="display:flex;align-items:center;gap:4px;padding:4px 10px"><button aria-label="Voltar" onClick="{{ go.inicio }}" style="width:44px;height:44px;border-radius:22px;border:0;background:transparent;display:grid;place-items:center;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-200)"><i class="ph ph-arrow-left" style="font-size:24px"></i></button><span style="font-size:16px;font-weight:500">Notificações</span></div>
+<div style="margin:4px 16px 0;border-radius:var(--radius-lg);background:var(--color-surface);border:1px solid var(--color-divider);overflow:hidden">
+<sc-for list="{{ notifs }}" as="n" hint-placeholder-count="4"><button onClick="{{ n.open }}" style="width:100%;display:flex;gap:12px;padding:14px;border:0;border-bottom:1px solid var(--color-divider);background:{{ n.bg }};font-family:inherit;text-align:left;color:var(--color-text);cursor:pointer" style-hover="background:var(--color-neutral-100)"><span style="width:36px;height:36px;border-radius:18px;display:grid;place-items:center;flex:none;background:{{ n.ibg }};color:{{ n.ifg }}"><i class="{{ n.icon }}" style="font-size:20px"></i></span><span style="flex:1;min-width:0"><span style="display:block;font-size:15px;font-weight:500">{{ n.title }}</span><span style="display:block;font-size:14px;color:var(--color-muted)">{{ n.text }}</span><span style="display:block;font-size:12px;color:var(--color-muted);margin-top:2px">{{ n.when }}</span></span></button></sc-for>
+</div>
+<div style="margin:12px 20px 0;font-size:13px;color:var(--color-muted)">Avisos internos do app. Não enviamos notificações fora do Eu Vou nesta versão.</div>
+</div>
+</sc-if>
+
+</div>
+<sc-if value="{{ showNav }}" hint-placeholder-val="{{ false }}">
+<nav aria-label="Navegação principal" style="flex:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--color-divider);background:var(--color-surface);padding:4px 4px 10px">
+<sc-for list="{{ nav }}" as="n" hint-placeholder-count="5"><button aria-current="{{ n.cur }}" onClick="{{ n.go }}" style="position:relative;min-height:56px;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:inherit;font-size:12px;font-weight:{{ n.weight }};color:{{ n.color }};cursor:pointer"><span style="position:absolute;top:0;width:28px;height:3px;border-radius:0 0 3px 3px;background:{{ n.bar }}"></span><i class="{{ n.cls }}" style="font-size:24px"></i>{{ n.label }}</button></sc-for>
+</nav>
+</sc-if>
+
+<sc-if value="{{ hasSheet }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:20;background:color-mix(in srgb, var(--color-text) 45%, transparent);display:flex;flex-direction:column;justify-content:flex-end" onClick="{{ closeSheet }}">
+<div role="dialog" aria-modal="true" onClick="{{ stop }}" style="background:var(--color-surface);border-radius:20px 20px 0 0;padding:8px 20px 20px;display:flex;flex-direction:column;gap:12px;max-height:85%;overflow:auto">
+<span style="align-self:center;width:40px;height:4px;border-radius:2px;background:var(--color-divider)"></span>
+<sc-if value="{{ sheet.regras }}" hint-placeholder-val="{{ false }}">
+<div style="font-size:20px;font-weight:500">Como funciona a pontuação</div>
+<div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+<div style="display:flex;gap:10px"><i class="ph ph-check-circle" style="font-size:20px;color:var(--color-success);flex:none"></i>Somente presenças aprovadas somam pontos. Pontos em análise aparecem separados.</div>
+<div style="display:flex;gap:10px"><i class="ph ph-calendar-check" style="font-size:20px;color:var(--color-accent);flex:none"></i>Cada atividade vale de 0 a 50 pontos e soma uma única vez por pessoa. O total do mês pode passar de 50.</div>
+<div style="display:flex;gap:10px"><i class="ph ph-equals" style="font-size:20px;color:var(--color-accent);flex:none"></i>A mesma atividade vale o mesmo para Jovens e Adolescentes. Os filtros mudam quem aparece, não os pontos de cada pessoa.</div>
+<div style="display:flex;gap:10px"><i class="ph ph-scales" style="font-size:20px;color:var(--color-accent);flex:none"></i>Desempate (proposta): mais pontos aprovados, depois mais cultos oficiais distintos, depois mais atividades distintas. Persistindo em posição premiada, sorteio registrado.</div>
+<div style="display:flex;gap:10px"><i class="ph ph-medal" style="font-size:20px;color:var(--color-accent);flex:none"></i>Três premiados em cada classificação. Uma pessoa pode ser premiada no Geral e no seu grupo (proposta).</div>
+</div>
+<button onClick="{{ closeSheet }}" style="min-height:48px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer">Entendi</button>
+</sc-if>
+<sc-if value="{{ sheet.desafio }}" hint-placeholder-val="{{ false }}">
+<span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--color-red-700)"><i class="ph ph-flag" style="font-size:15px"></i>Desafio · Adolescentes · exemplo fictício</span>
+<div style="font-size:20px;font-weight:500">Mutirão de serviço no pátio</div>
+<div style="font-size:14px;color:var(--color-muted)">Ajude a organizar o pátio da congregação com a turma. A direção dos Adolescentes analisa a foto enviada.</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:14px"><div style="padding:10px;border-radius:var(--radius-md);background:var(--color-neutral-200)"><div style="font-size:12px;color:var(--color-muted)">Quando</div>Sáb 31/10</div><div style="padding:10px;border-radius:var(--radius-md);background:var(--color-neutral-200)"><div style="font-size:12px;color:var(--color-muted)">Pontos</div>30, uma vez</div></div>
+<button disabled="{{ true }}" style="min-height:48px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:16px;font-weight:500;opacity:.45">Participar · abre em 31/10</button>
+</sc-if>
+<sc-if value="{{ sheet.sair }}" hint-placeholder-val="{{ false }}">
+<div style="font-size:20px;font-weight:500">Sair sem enviar?</div>
+<div style="font-size:15px;color:var(--color-muted)">A foto fica salva neste dispositivo como rascunho. Ela ainda não foi enviada e não conta como presença.</div>
+<button onClick="{{ sheetContinuar }}" style="min-height:48px;border:0;border-radius:var(--radius-md);background:var(--color-accent);color:var(--color-surface);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer">Continuar registro</button>
+<button onClick="{{ sairManter }}" style="min-height:48px;border:1px solid var(--color-field);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:16px;font-weight:500;cursor:pointer">Sair e manter rascunho</button>
+<button onClick="{{ sairDescartar }}" style="min-height:44px;border:0;background:transparent;color:var(--color-error);font-family:inherit;font-size:15px;font-weight:500;cursor:pointer">Descartar foto</button>
+</sc-if>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position:absolute;left:16px;right:16px;bottom:84px;z-index:30;padding:12px 14px;border-radius:var(--radius-md);background:var(--color-text);color:var(--color-bg);font-size:14px;display:flex;gap:8px;align-items:center;box-shadow:var(--shadow-md)"><i class="ph ph-info" style="font-size:18px"></i>{{ toastText }}</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430,&quot;height&quot;:860},&quot;start&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;login&quot;,&quot;inicio&quot;,&quot;agenda&quot;,&quot;atividade&quot;,&quot;envio&quot;,&quot;presencas&quot;,&quot;ranking&quot;,&quot;perfil&quot;,&quot;notif&quot;],&quot;default&quot;:&quot;login&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;scenario&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;disponivel&quot;,&quot;analise&quot;,&quot;aprovado&quot;,&quot;reenviado&quot;],&quot;default&quot;:&quot;disponivel&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;loginVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;padrao&quot;,&quot;convite&quot;,&quot;campos&quot;,&quot;credenciais&quot;,&quot;carregando&quot;,&quot;desativada&quot;,&quot;tentativas&quot;],&quot;default&quot;:&quot;padrao&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;step&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;foto&quot;,&quot;conferir&quot;,&quot;enviando&quot;,&quot;resultado&quot;],&quot;default&quot;:&quot;foto&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;rankTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;geral&quot;,&quot;adol&quot;,&quot;jov&quot;],&quot;default&quot;:&quot;geral&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;agendaMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;lista&quot;,&quot;cal&quot;],&quot;default&quot;:&quot;lista&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;sel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;25-0&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;target&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;25-0&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;sheet&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;regras&quot;,&quot;desafio&quot;,&quot;sair&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;anaSent&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;boolean&quot;},&quot;decisions&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object&quot;},&quot;onSend&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+const MEMBERS=[['lucas','Lucas M.','Jovens',285],['ana','Ana Clara M.','Adolescentes',250],['mateus','Mateus A.','Jovens',240],['julia','Júlia S.','Adolescentes',225],['sara','Sara O.','Jovens',220],['davi','Davi L.','Adolescentes',205],['beatriz','Beatriz C.','Jovens',180],['samuel','Samuel R.','Adolescentes',165],['joao','João P.','Jovens',120],['ester','Ester F.','Adolescentes',95],['rebeca','Rebeca T.','Jovens',45],['daniel','Daniel B.','Adolescentes',0]];
+const PENDING={'ana-dom25':['ana',45],'davi-dom25':['davi',45],'julia-sex23':['julia',30],'sara-dom25':['sara',45],'joao-sab24':['joao',0]};
+const WEEK={0:[['Culto oficial','Culto',45,'18h00 – 20h30','Jovens e Adolescentes']],1:[['Ensaio do órgão de louvor','Ensaio',0,'19h30 – 21h00','Jovens e Adolescentes']],2:[['Doutrina / Culto oficial','Culto',20,'19h30 – 21h00','Jovens e Adolescentes']],3:[['Oração / Culto oficial','Culto',25,'19h30 – 21h00','Jovens e Adolescentes']],4:[['Ensaio do órgão de louvor','Ensaio',0,'19h30 – 21h00','Jovens e Adolescentes'],['Estudo ou ensaio de adolescentes','Estudo',0,'18h00 – 19h15','Adolescentes']],5:[['Oração da mocidade','Oração',30,'19h30 – 21h00','Jovens e Adolescentes']],6:[['COI','Outra',0,'Horário a definir','Jovens e Adolescentes'],['Ensaio eletrônico','Ensaio',0,'15h00 – 17h00','Jovens e Adolescentes']]};
+const DOW=['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+const DOW3=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const REC={'2-0':'aprovado','4-0':'aprovado','9-0':'aprovado','11-0':'aprovado','14-0':'recusado','16-0':'aprovado','18-0':'aprovado','21-0':'aprovado','22-1':'aprovado'};
+const REASON={'14-0':'Não foi possível confirmar esta atividade com a imagem enviada. Confira a data e envie uma nova foto. O prazo de reenvio terminou em 16/10.','23-0':'A imagem ficou muito escura e não foi possível identificar a atividade. Envie uma nova foto até 27/10, 23h59.'};
+const ST={disponivel:['Disponível para registro','ph-camera','var(--color-accent)','var(--color-accent-100)'],prevista:['Prevista','ph-clock','var(--color-muted)','var(--color-neutral-200)'],encerrada:['Encerrada','ph-lock-simple','var(--color-muted)','var(--color-neutral-200)'],analise:['Em análise','ph-hourglass-medium','var(--color-warning)','var(--color-warning-bg)'],reenviado:['Reenviado · em análise','ph-hourglass-medium','var(--color-warning)','var(--color-warning-bg)'],ajuste:['Ajuste solicitado','ph-arrow-counter-clockwise','var(--color-warning)','var(--color-warning-bg)'],aprovado:['Aprovada','ph-check-circle','var(--color-success)','var(--color-success-bg)'],recusado:['Recusada','ph-x-circle','var(--color-error)','var(--color-error-bg)'],rascunho:['Salvo neste dispositivo','ph-device-mobile','var(--color-accent)','var(--color-accent-100)']};
+const tag=s=>{const t=ST[s];return {label:t[0],icon:'ph '+t[1],fg:t[2],bg:t[3]};};
+const AV=[['var(--color-accent-100)','var(--color-brand)'],['var(--color-red-100)','var(--color-red-700)'],['var(--color-neutral-200)','var(--color-text)'],['var(--color-success-bg)','var(--color-success)']];
+const ini=n=>n.replace('.','').split(' ').slice(0,2).map(w=>w[0]).join('');
+const dstr=d=>d<=31?String(d).padStart(2,'0')+'/10':'01/11';
+const chip=(on)=>({bg:on?'var(--color-brand)':'var(--color-surface)',fg:on?'var(--color-surface)':'var(--color-text)',bd:on?'var(--color-brand)':'var(--color-field)'});
+const seg=(on)=>({bg:on?'var(--color-surface)':'transparent',fg:on?'var(--color-text)':'var(--color-muted)',sh:on?'0 1px 2px rgba(23,32,51,.12)':'none'});
+
+class Component extends DCLogic {
+  state = {};
+  scrollRef = React.createRef();
+  componentDidUpdate(){ const s=this.state.screen; if(s!==this._lastScreen){ this._lastScreen=s; if(this.scrollRef.current) this.scrollRef.current.scrollTop=0; } }
+  componentWillUnmount(){ clearInterval(this.timer); clearTimeout(this.tt); }
+  g(k, def){ return this.state[k]!==undefined ? this.state[k] : (this.props[k] ?? def); }
+  scen(){ return this.props.scenario ?? 'disponivel'; }
+  dec(){ if(this.props.decisions) return this.props.decisions; const s=this.scen(); return s==='aprovado'?{'ana-dom25':'aprovado'}:{}; }
+  sent(){ if(this.props.anaSent!==undefined) return this.props.anaSent; if(this.state.localSent) return true; return this.scen()!=='disponivel'; }
+  dom25St(){ const d=this.dec()['ana-dom25']; if(d) return d; return this.sent()?'analise':null; }
+  sexSt(){ return (this.state.sexResent || this.scen()==='reenviado') ? 'reenviado' : 'ajuste'; }
+  recOf(k){ if(k==='25-0') return this.dom25St(); if(k==='23-0') return this.sexSt(); return REC[k]||null; }
+  occ(d,i){
+    const dow=(d+3)%7, w=WEEK[dow][i], k=d+'-'+i, rec=this.recOf(k);
+    const sit=d<25?'encerrada':(d===25?'disponivel':'prevista');
+    const draft=this.state.draft===k;
+    const st=rec||(draft?'rascunho':sit);
+    const resubmittable=k==='23-0'&&rec==='ajuste';
+    return {k,d,i,dow:DOW[dow],dow3:DOW3[dow],dd:String(d<=31?d:1).padStart(2,'0'),date:dstr(d),title:w[0],type:w[1],pts:w[2],time:w[3],start:w[3].includes('–')?w[3].split(' – ')[0]:'A definir',pub:w[4],sit,rec,draft,st,tag:tag(st),
+      ptsLabel:w[2]>0?w[2]+' pts':'Sem pontuação',ptsBg:w[2]>0?'var(--color-accent-100)':'var(--color-neutral-200)',ptsFg:w[2]>0?'var(--color-brand)':'var(--color-muted)',
+      canRegister:(sit==='disponivel'&&!rec)||resubmittable,resubmittable,open:()=>this.setState({screen:'atividade',sel:k})};
+  }
+  occK(k){ const [d,i]=k.split('-').map(Number); return this.occ(d,i); }
+  nav(s){ this.setState({screen:s, sheet:null}); if(s==='notif') this.setState({readNotif:true}); }
+  toast(t){ clearTimeout(this.tt); this.setState({toastText:t}); this.tt=setTimeout(()=>this.setState({toastText:null}),2600); }
+  points(){
+    const dec=this.dec();
+    return MEMBERS.map(([id,name,group,base],ix)=>{ let p=base; for(const pid in PENDING){ if(PENDING[pid][0]===id && dec[pid]==='aprovado') p+=PENDING[pid][1]; } return {id,name,group,pts:p,ix}; });
+  }
+  view(tab){
+    let l=this.points(); if(tab==='adol') l=l.filter(m=>m.group==='Adolescentes'); if(tab==='jov') l=l.filter(m=>m.group==='Jovens');
+    l.sort((a,b)=>b.pts-a.pts||a.name.localeCompare(b.name,'pt'));
+    return l.map(m=>({...m,pos:1+l.filter(o=>o.pts>m.pts).length,tie:m.pts>0&&l.filter(o=>o.pts===m.pts).length>1}));
+  }
+  startEnvio(k){ const draft=this.state.draft===k; this.setState({screen:'envio',target:k,step:draft?'conferir':'foto',note:'',photo:draft?(this.state.photo||'Galeria'):null,sheet:null}); }
+  enviar(){
+    this.setState({step:'enviando',progress:0}); clearInterval(this.timer);
+    this.timer=setInterval(()=>{ const p=Math.min(100,(this.state.progress||0)+9); this.setState({progress:p}); if(p>=100){ clearInterval(this.timer); this.finish(); } },110);
+  }
+  finish(){
+    const k=this.g('target','25-0');
+    if(k==='25-0'){ if(this.props.onSend) this.props.onSend(); else this.setState({localSent:true}); }
+    if(k==='23-0') this.setState({sexResent:true});
+    this.setState({step:'resultado',draft:null});
+  }
+  renderVals(){
+    const cur=this.g('screen',this.props.start ?? 'login');
+    const is={}; ['login','inicio','agenda','atividade','envio','presencas','ranking','perfil','notif'].forEach(s=>is[s]=cur===s);
+    const go={}; ['login','inicio','agenda','presencas','ranking','perfil','notif'].forEach(s=>go[s]=()=>this.nav(s));
+    const lv=this.g('loginVariant','padrao'); const loading=!!this.state.loading||lv==='carregando';
+    const dom=this.dom25St(), sex=this.sexSt();
+    const pts=this.points(), me=pts.find(m=>m.id==='ana');
+    const myPending=dom==='analise'?45:0, myPendingAll=myPending+(sex==='reenviado'?30:0);
+    const vG=this.view('geral'), vA=this.view('adol');
+    const N=[['inicio','Início','house'],['agenda','Agenda','calendar-blank'],['presencas','Presenças','check-circle'],['ranking','Ranking','ranking'],['perfil','Perfil','user-circle']];
+    const nav=N.map(([k,l,ic])=>{const a=cur===k||(k==='agenda'&&cur==='atividade')||(k==='inicio'&&cur==='notif');return {label:l,cur:a?'page':undefined,cls:(a?'ph-fill ph-':'ph ph-')+ic,color:a?'var(--color-accent)':'var(--color-muted)',weight:a?600:500,bar:a?'var(--color-accent)':'transparent',go:()=>this.nav(k)};});
+    // pendências
+    const pend=[]; const o25=this.occK('25-0'), o23=this.occK('23-0');
+    if(dom==='analise') pend.push({...o25,hint:'45 pts após aprovação',open:o25.open});
+    if(sex==='ajuste') pend.push({...o23,hint:'reenvie até 27/10',open:o23.open});
+    if(sex==='reenviado') pend.push({...o23,hint:'30 pts após aprovação',open:o23.open});
+    if(this.state.draft){ const od=this.occK(this.state.draft); pend.unshift({...od,hint:'ainda não enviado',open:od.open}); }
+    // agenda
+    const agF=this.g('agFilter','todas'); const pass=o=>agF==='todas'||(agF==='ensaio'?(o.type==='Ensaio'||o.type==='Estudo'):o.type===agF);
+    const agDays=[]; for(let d=25;d<=32;d++){ const items=WEEK[(d+3)%7].map((_,i)=>this.occ(d,i)).filter(pass); if(items.length) agDays.push({label:d<=31?DOW[(d+3)%7]+', '+d+' de outubro':'Domingo, 1º de novembro',today:d===26,nextCycle:d===32,items}); }
+    const agMode=this.g('agendaMode','lista');
+    const calDay=this.g('calDay',26);
+    const calCells=[]; for(let b=0;b<4;b++) calCells.push({n:'',empty:true,vis:'hidden',bg:'transparent',fg:'inherit',bd:'transparent',dot:'transparent',aria:'',pick:()=>{}});
+    for(let d=1;d<=31;d++){ const os=WEEK[(d+3)%7].map((_,i)=>this.occ(d,i)); const r=os.find(o=>o.rec); const sel=d===calDay;
+      calCells.push({n:d,empty:false,vis:'visible',bg:sel?'var(--color-brand)':'transparent',fg:sel?'var(--color-surface)':'var(--color-text)',bd:d===26&&!sel?'var(--color-red)':'transparent',dot:r?tag(r.rec).fg:'transparent',aria:d+' de outubro'+(r?', '+tag(r.rec).label:''),pick:()=>this.setState({calDay:d})}); }
+    const calItems=WEEK[(calDay+3)%7].map((_,i)=>this.occ(calDay,i)).filter(pass);
+    // detalhe
+    const o=this.occK(this.g('sel','25-0'));
+    const winTxt=o.d<25?'Prazo encerrado':(o.d===25?'Do término até hoje, 20h30':(o.d===26?'Hoje, das 21h00 até 27/10, 21h00':'Do término até 24 h depois'));
+    const d={...o,rows:[{icon:'ph ph-calendar-blank',k:'Data',v:o.dow+', '+o.date+'/2026'},{icon:'ph ph-clock',k:'Horário (fictício)',v:o.time},{icon:'ph ph-map-pin',k:'Local',v:'Congregação Vila Demo · templo (fictício)'},{icon:'ph ph-users-three',k:'Público',v:o.pub},{icon:'ph ph-star',k:'Pontos',v:o.pts>0?o.pts+' pontos, somados uma vez se a presença for aprovada':'0 · atividade sem pontuação'},{icon:'ph ph-upload-simple',k:'Envio da presença',v:o.resubmittable?'Reenvio até 27/10, 23h59':winTxt}],
+      zero:o.pts===0,hasReason:!!(REASON[o.k]&&(o.rec==='ajuste'||o.rec==='recusado')),reason:REASON[o.k]||'',
+      ctaLabel:o.resubmittable?'Enviar ajuste':(o.draft?'Continuar envio':'Registrar presença'),
+      ctaNote:o.rec==='analise'||o.rec==='reenviado'?'Sua presença está em análise. Você será avisado aqui no app.':o.rec==='aprovado'?(o.pts>0?'Presença aprovada · '+o.pts+' pontos creditados.':'Presença aprovada · atividade sem pontuação.'):o.rec==='recusado'?'Registro recusado. O prazo para reenvio terminou.':o.sit==='prevista'?(o.d===26?'O registro abre às 21h00, ao fim da atividade.':'O registro abre ao fim da atividade.'):'O prazo de envio terminou.'};
+    d.noCta=!d.canRegister;
+    // envio
+    const step=this.g('step','foto'); const tk=this.g('target','25-0'); const t=this.occK(tk); const isRe=tk==='23-0';
+    const si={foto:0,conferir:1,enviando:2,resultado:2}[step];
+    const stepBars=[0,1,2].map(i=>({bg:i<=si?'var(--color-accent)':'var(--color-divider)'}));
+    // presenças
+    const keys=Object.keys(REC).concat(['23-0']).concat(dom?['25-0']:[]);
+    const recs=keys.map(k=>this.occK(k)).sort((a,b)=>b.d-a.d||b.i-a.i);
+    const pf=this.g('presFilter','todas');
+    const pm={todas:()=>true,analise:r=>r.rec==='analise'||r.rec==='reenviado',aprovado:r=>r.rec==='aprovado',ajuste:r=>r.rec==='ajuste',recusado:r=>r.rec==='recusado'};
+    const presList=recs.filter(pm[pf]).map(r=>({...r,ptsTxt:r.rec==='aprovado'?(r.pts>0?'+'+r.pts:'0'):(r.rec==='analise'||r.rec==='reenviado'?String(r.pts):'—'),ptsSub:r.rec==='aprovado'?(r.pts>0?'aprovados':'sem pontuação'):(r.rec==='analise'||r.rec==='reenviado'?'em análise':'não soma'),ptsColor:r.rec==='aprovado'&&r.pts>0?'var(--color-success)':(r.rec==='analise'||r.rec==='reenviado'?'var(--color-warning)':'var(--color-muted)')}));
+    const myApproved=recs.filter(r=>r.rec==='aprovado').reduce((s,r)=>s+r.pts,0);
+    const notCounted=recs.filter(r=>r.rec==='ajuste'||r.rec==='recusado').length;
+    // ranking
+    const rt=this.g('rankTab','geral'); const v=this.view(rt);
+    const meRow=v.find(m=>m.id==='ana');
+    const podIdx=v.filter(m=>m.pts>0).slice(0,3);
+    const avc=m=>AV[m.ix%4];
+    const H={1:'84px',2:'64px',3:'48px'};
+    const order=podIdx.length===3?[podIdx[1],podIdx[0],podIdx[2]]:podIdx;
+    const podium=order.map(m=>({...m,ini:ini(m.name),avBg:avc(m)[0],avFg:avc(m)[1],av:m.pos===1?'56px':'48px',h:H[Math.min(m.pos,3)],base:m.pos===1?'var(--color-accent-100)':'var(--color-neutral-200)',top:m.pos===1?'var(--color-red)':'var(--color-accent-300)',ring:m.id==='ana'?'0 0 0 3px var(--color-accent)':'none'}));
+    const restList=v.filter(m=>!podIdx.includes(m)).map(m=>({...m,ini:ini(m.name),avBg:avc(m)[0],avFg:avc(m)[1],me:m.id==='ana',showGroup:rt==='geral',rowBg:m.id==='ana'?'var(--color-accent-100)':'transparent'}));
+    const anyDec=Object.values(this.dec()).some(x=>x==='aprovado');
+    const rankTabs=[['geral','Geral'],['adol','Adolescentes'],['jov','Jovens']].map(([k,l])=>({label:l,on:rt===k,...seg(rt===k),pick:()=>this.setState({rankTab:k})}));
+    const meV=meRow?{pos:meRow.pos,pts:meRow.pts,sub:(rt==='geral'?'Geral · ':'Adolescentes · ')+(myPending?myPending+' pts em análise não entram ainda':'somente pontos aprovados')+(meRow.tie?' · empate':'')}:{pos:'—',pts:'',sub:'Você não faz parte deste grupo. Os pontos de cada pessoa são os mesmos em todas as visões.'};
+    // notificações
+    const unread=(this.state.readNotif?0:2)+(dom==='aprovado'&&!this.state.readNotif2?1:0);
+    const notifs=[];
+    if(dom==='aprovado') notifs.push({icon:'ph-fill ph-check-circle',ibg:'var(--color-success-bg)',ifg:'var(--color-success)',title:'Presença aprovada',text:'Culto oficial · Dom 25/10. Você recebeu 45 pontos.',when:'Agora',bg:'var(--color-accent-100)',open:o25.open});
+    notifs.push({icon:'ph ph-arrow-counter-clockwise',ibg:'var(--color-warning-bg)',ifg:'var(--color-warning)',title:'Ajuste solicitado',text:'Oração da mocidade · Sex 23/10. Confira o motivo e envie um ajuste.',when:'24/10, 10h12',bg:'transparent',open:o23.open});
+    notifs.push({icon:'ph ph-flag',ibg:'var(--color-red-100)',ifg:'var(--color-red-700)',title:'Novo desafio para Adolescentes',text:'Mutirão de serviço no pátio · Sáb 31/10.',when:'23/10, 19h05',bg:'transparent',open:()=>this.setState({sheet:'desafio'})});
+    notifs.push({icon:'ph-fill ph-check-circle',ibg:'var(--color-success-bg)',ifg:'var(--color-success)',title:'Presença aprovada',text:'Oração / Culto oficial · Qua 21/10. Você recebeu 25 pontos.',when:'22/10, 08h40',bg:'transparent',open:this.occK('21-0').open});
+    notifs.push({icon:'ph ph-calendar-check',ibg:'var(--color-neutral-200)',ifg:'var(--color-muted)',title:'Resultado do mês',text:'O ciclo de setembro foi encerrado. Confira o resultado.',when:'04/10, 09h00',bg:'transparent',open:()=>this.toast('Resultados anteriores: próximo lote do protótipo.')});
+    const sheet=this.g('sheet',null);
+    return {
+      is, go, nav, showNav:!['login','envio','atividade','notif'].includes(cur), scrollRef:this.scrollRef,
+      lvConvite:lv==='convite', lvCred:lv==='credenciais', lvCampos:lv==='campos', lvDesativada:lv==='desativada', lvTentativas:lv==='tentativas',
+      isLoading:loading, entrarLabel:loading?'Entrando…':'Entrar', entrarDisabled:loading||lv==='tentativas', entrarOpacity:(loading||lv==='tentativas')?0.55:1,
+      userDefault:lv==='campos'?'':'anaclara.m', pwdDefault:lv==='campos'?'':'••••••••', fieldBorder:(lv==='campos'||lv==='credenciais')?'var(--color-error)':'var(--color-field)',
+      pwdType:this.state.showPwd?'text':'password', pwdIcon:this.state.showPwd?'ph ph-eye-slash':'ph ph-eye', pwdLabel:this.state.showPwd?'Ocultar senha':'Mostrar senha',
+      togglePwd:()=>this.setState({showPwd:!this.state.showPwd}),
+      entrar:()=>{ if(loading||lv==='tentativas') return; this.setState({loading:true}); setTimeout(()=>this.setState({loading:false,loginVariant:'padrao',screen:'inicio'}),700); },
+      toast:{cadastro:()=>this.toast('Cadastro em etapas: próximo lote do protótipo.'),recuperar:()=>this.toast('Recuperação pelo WhatsApp: próximo lote do protótipo.'),mes:()=>this.toast('Meses anteriores: próximo lote do protótipo.'),perfil:()=>this.toast('Edição de perfil: próximo lote do protótipo.')},
+      myPts:myApproved, myPending, myPendingAll, hasPending:myPending>0, posGeral:vG.find(m=>m.id==='ana').pos, posGrupo:vA.find(m=>m.id==='ana').pos,
+      dom25Aprovado:dom==='aprovado', canRegister:o25.canRegister, registerDom25:()=>this.startEnvio('25-0'), openSeg26:this.occK('26-0').open, openDesafio:()=>this.setState({sheet:'desafio'}),
+      pendencias:pend, noPendencias:pend.length===0,
+      agModes:[['lista','Lista','ph ph-list-bullets'],['cal','Calendário','ph ph-calendar-blank']].map(([k,l,ic])=>({label:l,icon:ic,on:agMode===k,...seg(agMode===k),pick:()=>this.setState({agendaMode:k})})),
+      agChips:[['todas','Todas'],['Culto','Cultos'],['Oração','Orações'],['ensaio','Ensaios e estudos'],['Outra','Outras']].map(([k,l])=>({label:l,on:agF===k,...chip(agF===k),pick:()=>this.setState({agFilter:k})})),
+      agLista:agMode==='lista', agCal:agMode==='cal', agDays, calCells, calItems, calEmpty:calItems.length===0, calDayLabel:DOW[(calDay+3)%7]+', '+calDay+' de outubro',
+      d, register:()=>this.startEnvio(o.k),
+      t, isReenvio:isRe, sexReason:REASON['23-0'], envioTitle:isRe?'Enviar ajuste':'Registrar presença', stepLabel:'Etapa '+(si+1)+' de 3', stepBars,
+      stepFoto:step==='foto', stepConferir:step==='conferir', stepEnviando:step==='enviando', stepResultado:step==='resultado',
+      pickCamera:()=>this.setState({step:'conferir',photo:'Câmera'}), pickGallery:()=>this.setState({step:'conferir',photo:'Galeria'}), trocarFoto:()=>this.setState({step:'foto'}),
+      photoInfo:(this.state.photo||'Galeria')+' · 3,2 MB · será reduzida para cerca de 600 KB',
+      onNote:e=>this.setState({note:e.target.value}), noteCount:(this.state.note||'').length,
+      conferirNote:isRe?'O registro original e o histórico são mantidos. Se aprovado, a atividade soma 30 pontos uma única vez.':(t.pts>0?'Se aprovada, a presença soma '+t.pts+' pontos. Até lá, os pontos aparecem como em análise.':'Atividade sem pontuação: registra sua participação, sem somar pontos.'),
+      enviar:()=>this.enviar(), progress:this.state.progress||0, progressW:(this.state.progress||0)+'%',
+      cancelarEnvio:()=>{ clearInterval(this.timer); this.setState({step:'conferir'}); this.toast('Envio cancelado. Sua foto continua aqui.'); },
+      envioBack:()=>{ if(step==='conferir') this.setState({sheet:'sair'}); else if(step==='resultado') this.nav('inicio'); else if(step==='foto') this.setState({screen:'atividade',sel:tk}); },
+      resultTitle:isRe?'Ajuste reenviado':'Presença em análise',
+      resultText:isRe?'A nova foto voltou para análise. O registro original foi mantido no histórico e a atividade não gera uma segunda pontuação.':'A direção do seu grupo vai conferir a foto. Os '+t.pts+' pontos entram no seu saldo somente depois da aprovação.',
+      presChips:[['todas','Todas'],['analise','Em análise'],['aprovado','Aprovadas'],['ajuste','Ajuste'],['recusado','Recusadas']].map(([k,l])=>({label:l,on:pf===k,...chip(pf===k),pick:()=>this.setState({presFilter:k})})),
+      presList, presEmpty:presList.length===0, notCounted,
+      rankTabs, me:meV, podium, restList, rankUpdated:anyDec?'agora há pouco':'26/10, 18h32', openRegras:()=>this.setState({sheet:'regras'}),
+      perfilEdit:[{icon:'ph ph-camera',k:'Foto de perfil',v:'Avatar com iniciais'},{icon:'ph ph-identification-badge',k:'Nome no ranking',v:'Ana Clara M.'},{icon:'ph ph-phone',k:'WhatsApp',v:'Número terminado em 47 (fictício)'},{icon:'ph ph-key',k:'Senha',v:'Alterar senha'}],
+      perfilLock:[{icon:'ph ph-users-three',k:'Grupo',v:'Adolescentes'},{icon:'ph ph-map-pin',k:'Congregação',v:'Vila Demo'},{icon:'ph ph-cake',k:'Data de nascimento',v:'Visível só para a liderança autorizada'}],
+      perfilHelp:[{icon:'ph ph-book-open',k:'Regras da campanha',fg:'var(--color-text)',go:()=>this.setState({sheet:'regras'})},{icon:'ph ph-shield-check',k:'Privacidade e uso das fotos',fg:'var(--color-text)',go:()=>this.toast('Sobre e privacidade: próximo lote do protótipo.')},{icon:'ph ph-device-mobile',k:'Instalar o app no celular',fg:'var(--color-text)',go:()=>this.toast('Instalação da PWA: próximo lote do protótipo.')},{icon:'ph ph-sign-out',k:'Sair da conta',fg:'var(--color-error)',go:()=>this.nav('login')}],
+      notifs, unreadCount:unread, hasUnread:unread>0,
+      hasSheet:!!sheet, sheet:{regras:sheet==='regras',desafio:sheet==='desafio',sair:sheet==='sair'},
+      closeSheet:()=>this.setState({sheet:null}), stop:e=>e.stopPropagation(),
+      sheetContinuar:()=>this.setState({sheet:null}),
+      sairManter:()=>{ this.setState({sheet:null,draft:tk,screen:'atividade',sel:tk}); this.toast('Rascunho salvo neste dispositivo.'); },
+      sairDescartar:()=>this.setState({sheet:null,draft:null,screen:'atividade',sel:tk,photo:null}),
+      hasToast:!!this.state.toastText, toastText:this.state.toastText
+    };
+  }
+}
+</script>
+</body>
+</html>

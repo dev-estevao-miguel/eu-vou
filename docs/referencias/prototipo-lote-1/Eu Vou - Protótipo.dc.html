@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-35f42e47-c325-4f7e-8398-56d6ad2d4ad8/styles.css">
+<script src="_ds/nocturne-35f42e47-c325-4f7e-8398-56d6ad2d4ad8/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>:root{--color-bg:#F6F8FC;--color-surface:#FFFFFF;--color-text:#172033;--color-accent:#1E56A0;--color-divider:#DCE3ED;--color-brand:#143A66;--color-red:#C8333D;--color-red-100:#FBECEE;--color-red-700:#9E2530;--color-muted:#566579;--color-field:#7C899B;--color-success:#166534;--color-success-bg:#E6F4EA;--color-warning:#92400E;--color-warning-bg:#FCF1E3;--color-error:#B42318;--color-error-bg:#FDECEA;--color-accent-100:#EEF4FB;--color-accent-200:#D9E6F6;--color-accent-300:#B3CBEB;--color-accent-600:#184A8C;--color-neutral-100:#F6F8FC;--color-neutral-200:#EDF1F7;--color-neutral-300:#DCE3ED;--shadow-md:0 1px 2px rgba(23,32,51,.06),0 6px 20px rgba(23,32,51,.08);--shadow-lg:0 0 0 1px #DCE3ED,0 16px 40px rgba(23,32,51,.16)}body{margin:0;background:var(--color-neutral-200);color:var(--color-text);font-family:Inter,system-ui,sans-serif}a{color:var(--color-accent)}a:hover{color:var(--color-brand)}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.45;color:var(--color-text)">
+<header style="position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap;padding:10px 20px;background:var(--color-surface);border-bottom:1px solid var(--color-divider)">
+<div style="display:flex;align-items:center;gap:10px"><span style="width:30px;height:30px;border-radius:8px;background:var(--color-brand);display:grid;place-items:center;flex:none"><svg width="19" height="19" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 11 L16 24 L25 11" style="fill:none;stroke:var(--color-bg);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round"></path><circle cx="16" cy="7.5" r="3" style="fill:var(--color-red)"></circle></svg></span><div><div style="font-size:15px;font-weight:600;color:var(--color-brand);line-height:1.1">Eu Vou · protótipo</div><div style="font-size:12px;color:var(--color-muted)">08 — Protótipo · lote 1</div></div></div>
+<div role="tablist" aria-label="Ver como" style="display:flex;flex-wrap:wrap;gap:4px;padding:3px;border-radius:10px;background:var(--color-neutral-200)">
+<sc-for list="{{ roles }}" as="r" hint-placeholder-count="6"><button role="tab" aria-selected="{{ r.on }}" onClick="{{ r.pick }}" style="min-height:34px;padding:0 12px;border:0;border-radius:8px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;background:{{ r.bg }};color:{{ r.fg }};box-shadow:{{ r.sh }}">{{ r.label }}</button></sc-for>
+</div>
+<div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:8px;background:var(--color-accent-100);font-size:13px"><span style="width:22px;height:22px;border-radius:50%;background:var(--color-red-100);color:var(--color-red-700);display:grid;place-items:center;font-size:10px;font-weight:600">AC</span><span><span style="font-weight:600;font-variant-numeric:tabular-nums">{{ anaPts }}</span> aprovados · <span style="font-variant-numeric:tabular-nums">{{ anaPend }}</span> em análise · {{ anaPos }}º no Geral</span></span>
+<button onClick="{{ reset }}" style="min-height:34px;padding:0 12px;border:1px solid var(--color-field);border-radius:8px;background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px" style-hover="background:var(--color-neutral-200)"><i class="ph ph-arrow-counter-clockwise" style="font-size:15px"></i>Recomeçar</button>
+</div>
+</header>
+<div style="display:{{ partDisplay }};flex:1;padding:28px 20px 40px;gap:32px;justify-content:center;align-items:flex-start;flex-wrap:wrap">
+<dc-import name="EuVouApp" key="{{ gen }}" start="login" anaSent="{{ anaSent }}" decisions="{{ decisions }}" onSend="{{ onSend }}" hint-size="430px,844px" style="width:430px;max-width:100%;flex:none"></dc-import>
+<aside style="width:340px;max-width:100%;display:flex;flex-direction:column;gap:16px">
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+<div style="font-size:16px;font-weight:500">Roteiro principal</div>
+<sc-for list="{{ steps }}" as="s" hint-placeholder-count="5"><div style="display:flex;gap:10px;font-size:14px"><i class="{{ s.icon }}" style="font-size:20px;color:{{ s.fg }};flex:none"></i><span style="color:{{ s.tc }}">{{ s.t }}</span></div></sc-for>
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}"><button onClick="{{ skipSend }}" style="min-height:40px;border:1px solid var(--color-field);border-radius:8px;background:var(--color-surface);color:var(--color-text);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer" style-hover="background:var(--color-neutral-200)">Pular: envio de Ana já em análise</button></sc-if>
+</div>
+<div style="padding:18px;border-radius:14px;background:var(--color-surface);border:1px solid var(--color-divider);display:flex;flex-direction:column;gap:8px">
+<div style="font-size:16px;font-weight:500">Testes de permissão</div>
+<sc-for list="{{ tests }}" as="t" hint-placeholder-count="4"><button onClick="{{ t.go }}" style="display:flex;gap:10px;align-items:center;min-height:44px;padding:8px 12px;border:1px solid var(--color-divider);border-radius:8px;background:var(--color-surface);font-family:inherit;font-size:13px;color:var(--color-text);cursor:pointer;text-align:left" style-hover="border-color:var(--color-accent-300);background:var(--color-accent-100)"><i class="{{ t.icon }}" style="font-size:18px;color:var(--color-accent);flex:none"></i><span style="flex:1">{{ t.label }}</span><i class="ph ph-arrow-right" style="font-size:16px;color:var(--color-muted)"></i></button></sc-for>
+</div>
+<div style="font-size:12px;color:var(--color-muted);padding:0 4px">Todos os nomes, pontos, horários e fotos são fictícios. Nenhum dado é enviado: aprovações e envios são simulados nesta página. <a href="Eu Vou - Documento.dc.html">Documento de design</a> · <a href="Eu Vou - Telas.dc.html">Telas por módulo</a></div>
+</aside>
+</div>
+<div style="display:{{ gestDisplay }};flex:1;min-height:0">
+<dc-import name="EuVouGestao" role="{{ gRole }}" directLink="{{ directLink }}" anaSent="{{ anaSent }}" decisions="{{ decisions }}" onDecide="{{ onDecide }}" onSwitch="{{ toPart }}" onClearLink="{{ clearLink }}" hint-size="100%,860px" style="width:100%;height:calc(100vh - 57px);min-height:820px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const MEMBERS=[['lucas',285],['ana',250],['mateus',240],['julia',225],['sara',220],['davi',205],['beatriz',180],['samuel',165],['joao',120],['ester',95],['rebeca',45],['daniel',0]];
+const PENDING={'ana-dom25':['ana',45],'davi-dom25':['davi',45],'julia-sex23':['julia',30],'sara-dom25':['sara',45],'joao-sab24':['joao',0]};
+class Component extends DCLogic {
+  state = { role:'part', anaSent:false, decisions:{}, directLink:'', gen:0 };
+  renderVals(){
+    const st=this.state, dec=st.decisions;
+    const pts=MEMBERS.map(([id,b])=>{ let p=b; for(const k in PENDING){ if(PENDING[k][0]===id&&dec[k]==='aprovado') p+=PENDING[k][1]; } return {id,p}; });
+    const ana=pts.find(m=>m.id==='ana');
+    const anaDec=dec['ana-dom25'];
+    const R=[['part','Participante (Ana)'],['adol','Direção dos Adolescentes'],['jov','Direção dos Jovens'],['resp','Responsável da congregação'],['campanha','Direção da campanha'],['admin','Administrador']];
+    const done=[true,st.anaSent,st.anaSent,anaDec==='aprovado',anaDec==='aprovado'];
+    const T=['Entre como Ana (A01). Toque em Entrar.','No Início, registre a presença do Culto oficial de domingo: foto, conferência e envio.','O saldo continua 250. Os 45 pontos aparecem em análise.','Troque para Direção dos Adolescentes e aprove o envio de Ana.','Volte para Participante: 295 pontos e 1º lugar no Geral, ainda 1º em Adolescentes.'];
+    return {
+      roles:R.map(([k,l])=>({label:l,on:st.role===k,bg:st.role===k?'var(--color-surface)':'transparent',fg:st.role===k?'var(--color-text)':'var(--color-muted)',sh:st.role===k?'0 1px 2px rgba(23,32,51,.12)':'none',pick:()=>this.setState({role:k,directLink:''})})),
+      anaPts:ana.p, anaPend:st.anaSent&&!anaDec?45:0, anaPos:1+pts.filter(m=>m.p>ana.p).length,
+      partDisplay:st.role==='part'?'flex':'none', gestDisplay:st.role==='part'?'none':'block',
+      gRole:st.role==='part'?'adol':st.role, directLink:st.directLink, anaSent:st.anaSent, decisions:dec, gen:st.gen,
+      onSend:()=>this.setState({anaSent:true}),
+      onDecide:(id,d)=>this.setState(s=>({decisions:{...s.decisions,[id]:d}})),
+      toPart:()=>this.setState({role:'part'}), clearLink:()=>this.setState({directLink:''}),
+      reset:()=>this.setState(s=>({role:'part',anaSent:false,decisions:{},directLink:'',gen:s.gen+1})),
+      notSent:!st.anaSent, skipSend:()=>this.setState({anaSent:true}),
+      steps:T.map((t,i)=>({t,icon:done[i]&&i>0?'ph-fill ph-check-circle':'ph ph-circle',fg:done[i]&&i>0?'var(--color-success)':'var(--color-field)',tc:'var(--color-text)'})),
+      tests:[
+        {icon:'ph ph-link',label:'Direção dos Jovens abre o comprovante de Ana por link direto',go:()=>this.setState({role:'jov',directLink:'ana-dom25',anaSent:true})},
+        {icon:'ph ph-users-three',label:'Responsável da congregação valida os dois grupos',go:()=>this.setState({role:'resp',directLink:''})},
+        {icon:'ph ph-eye',label:'Direção da campanha: só consulta, sem fotos nem aprovação',go:()=>this.setState({role:'campanha',directLink:''})},
+        {icon:'ph ph-link',label:'Direção da campanha tenta abrir um comprovante por link',go:()=>this.setState({role:'campanha',directLink:'ana-dom25',anaSent:true})},
+        {icon:'ph ph-shield-check',label:'Administrador revisa registros de todos os grupos',go:()=>this.setState({role:'admin',directLink:''})}
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

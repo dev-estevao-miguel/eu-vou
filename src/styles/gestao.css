@@ -1,0 +1,193 @@
+/* Área da direção: barra lateral no desktop, cabeçalho compacto no celular. */
+.gestao {
+  min-height: 100dvh;
+  background: var(--color-bg);
+}
+.gestao__lateral {
+  display: none;
+}
+.gestao__principal {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.gestao__topo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: calc(12px + var(--safe-top)) 16px 12px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-divider);
+}
+.gestao__marca-mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gestao__titulo {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.gestao__contexto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.gestao__abas {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.gestao__abas .chip {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.gestao__abas .chip[aria-current='page'] {
+  border-color: var(--color-brand);
+  background: var(--color-brand);
+  color: var(--color-surface);
+}
+.gestao__conteudo {
+  padding: 16px;
+  max-width: 1100px;
+  width: 100%;
+}
+.gestao__nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.gestao__nav-item:hover {
+  background: var(--color-neutral-200);
+  color: var(--color-text);
+}
+.gestao__nav-item[aria-current='page'] {
+  background: var(--color-accent-100);
+  color: var(--color-brand);
+}
+
+@media (min-width: 900px) {
+  .gestao {
+    display: grid;
+    grid-template-columns: 248px minmax(0, 1fr);
+  }
+  .gestao__lateral {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 12px;
+    background: var(--color-surface);
+    border-right: 1px solid var(--color-divider);
+    overflow-y: auto;
+  }
+  .gestao__abas,
+  .gestao__marca-mobile {
+    display: none;
+  }
+  .gestao__topo {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 14px 28px;
+  }
+  .gestao__conteudo {
+    padding: 24px 28px 32px;
+  }
+}
+
+/* Cartões da fila de decisões */
+.cartao-decisao {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+.cartao-decisao__dados {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px 16px;
+  font-size: 14px;
+}
+.cartao-decisao__rotulo {
+  display: block;
+  font-size: 12px;
+  color: var(--color-muted);
+}
+.cartao-decisao__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.grade-cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+  gap: 12px;
+}
+.campo-select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--color-muted) 50%),
+    linear-gradient(135deg, var(--color-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 15px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+.link-gerado {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--color-neutral-200);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+/* Validação: fila ao lado da análise no desktop; empilhadas no celular. */
+.validacao {
+  display: grid;
+  gap: 16px;
+}
+.validacao__fila {
+  overflow: hidden;
+  align-self: start;
+}
+.validacao__analise {
+  min-width: 0;
+  scroll-margin-top: 16px;
+}
+.validacao__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 18px;
+}
+@media (min-width: 1100px) {
+  .validacao {
+    grid-template-columns: 360px minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+/* Formulários da administração: campos lado a lado quando há espaço. */
+.form-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 14px;
+}
