@@ -3,6 +3,10 @@
 PWA que incentiva a participação de jovens e adolescentes nas atividades da igreja: agenda → presença com foto → validação da liderança → pontos → ranking mensal.
 
 <p>
+  <a href="https://euvou.tscbr.com.br"><img alt="Acessar Eu Vou" src="https://img.shields.io/badge/VER%20PROJETO-euvou.tscbr.com.br-2ea44f?style=for-the-badge&logo=googlechrome&logoColor=white"/></a>
+</p>
+
+<p>
   <img alt="Status" src="https://img.shields.io/badge/status-piloto-10bfe1?style=flat-square"/>
   <img alt="React" src="https://img.shields.io/badge/React-19-1f2334?style=flat-square&logo=react&logoColor=61DAFB"/>
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-1f2334?style=flat-square&logo=typescript&logoColor=3178C6"/>
@@ -125,7 +129,7 @@ Novas versões aparecem com o aviso “Nova versão disponível” e só são ap
 ## Escopo da versão pública
 
 - Código completo do app, migrações, Edge Functions, testes e documentação.
-- Identificadores do ambiente de produção (projeto Supabase, endereço publicado) foram substituídos por marcadores (`<id-do-projeto-supabase>`, `<seu-app>.vercel.app`).
+- Identificadores sensíveis do ambiente de produção, como o projeto Supabase, permanecem substituídos por marcadores. O endereço público oficial da demonstração é **https://euvou.tscbr.com.br**.
 - Dados de teste usam a congregação fictícia **Vila Demo**. Não acompanham o repositório: `.env*`, fotos e qualquer dado de participante.
 - O Eu Vou não é um aplicativo oficial da IEADPE e não usa a marca da instituição.
 
@@ -135,4 +139,4 @@ Novas versões aparecem com o aviso “Nova versão disponível” e só são ap
 
 ---
 
-Desenvolvido por **Estevão Santos** · [github.com/dev-estevao-miguel](https://github.com/dev-estevao-miguel)
+Desenvolvido por **Estevão dos Santos** · [github.com/dev-estevao-miguel](https://github.com/dev-estevao-miguel)
